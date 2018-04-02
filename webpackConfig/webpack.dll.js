@@ -27,7 +27,9 @@ const webpackDllConfig = {
                         dead_code: false,
                         warnings: true
                     },
-                    comments: true
+                    output: {
+                        comments: true
+                    }
                 }
             })
         ]
