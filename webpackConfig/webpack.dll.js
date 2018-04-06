@@ -7,21 +7,23 @@ const PUBLIC_DIR = "/",
     ROOT_DIR = path.resolve(__dirname, "../..");
 
 const webpackDllConfig = {
+    mode: "development",
     devtool: "source-map",
     entry: {
         vendor: ["react", "react-dom", "react-addons", "react-router", "redux", "redux-thunk", "redux-logger", "redux-saga", "redux-devtools", "antd", "react-redux", "prop-types", "moment"]
     },
     output: {
         publicPath: PUBLIC_DIR,
-        filename: "[name]_[hash].js",
+        filename: "[name]_bundle.js",
         path: DLL_DIR,
         library: "[name]_[chunkhash]"
     },
     optimization: {
+        minimize: true,
         minimizer: [
             new UglifyJsPlugin({
+                sourceMap: true,
                 uglifyOptions: {
-                    sourceMap: true,
                     compress: {
                         unused: false,
                         dead_code: false,

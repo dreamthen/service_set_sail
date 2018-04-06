@@ -12,19 +12,41 @@ const PUBLIC_DIR = "/",
     STYLE_DIR = path.resolve(__dirname, "../stylesheets"),
     MANIFEST_DIR = require(path.resolve(__dirname, `${DLL_DIR}/vendor_manifest.dll.json`));
 
-const port = 9999;
-
-const production = "dev";
+const port = 9997;
 
 const webpackDevConfig = {
+    mode: "development",
     devtool: "source-map",
     entry: {
-        index: `${APP_DIR}/app.js`
+        index: `${APP_DIR}/index.js`
     },
     output: {
         publicPath: PUBLIC_DIR,
         filename: "[name]_[hash].js",
         path: BUILD_DIR
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new UglifyJsPlugin({
+                sourceMap: true,
+                uglifyOptions: {
+                    cache: true,
+                    parallel: true,
+                    compress: {
+                        unused: false,
+                        dead_code: false,
+                        warnings: true,
+                        inline: 1,
+                        keep_classnames: true,
+                        keep_fnames: true
+                    },
+                    output: {
+                        comments: true
+                    }
+                }
+            })
+        ]
     },
     resolve: {
         modules: [
@@ -35,23 +57,6 @@ const webpackDevConfig = {
     },
     externals: {
         jquery: "jQuery"
-    },
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    sourceMap: true,
-                    compress: {
-                        unused: false,
-                        dead_code: false,
-                        warnings: true
-                    },
-                    output: {
-                        comments: true
-                    }
-                }
-            })
-        ]
     },
     module: {
         rules: [{
@@ -85,17 +90,11 @@ const webpackDevConfig = {
             manifest: MANIFEST_DIR,
             context: ROOT_DIR
         }),
-        new webpack.EnvironmentPlugin({
-            NODE_ENV: production
-        }),
-        new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
-        }),
         new ExtractTextPlugin("[name]_[hash].css"),
         new HtmlWebpackPlugin({
             publicPath: PUBLIC_DIR,
-            filename: "app.html",
-            template: `${ROOT_DIR}/app.html`,
+            filename: "index.html",
+            template: `${ROOT_DIR}/index.html`,
             chunks: ['index'],
             inject: 'body'
         })
@@ -103,7 +102,8 @@ const webpackDevConfig = {
     devServer: {
         host: "0.0.0.0",
         port: port,
-        proxy: {}
+        proxy: {},
+        historyApiFallback: true
     }
 };
 

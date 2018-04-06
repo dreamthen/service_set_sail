@@ -1,0 +1,17 @@
+import MainView from "../containers/MainView";
+import PrizeView from "../containers/PrizeView";
+import GraphView from "../containers/GraphView";
+
+export const routesConfig = [{
+    path: "/",
+    component: MainView,
+    children: [
+        {
+            path: "prize",
+            component: PrizeView
+        }, {
+            path: "graph",
+            component: GraphView
+        }
+    ]
+}];

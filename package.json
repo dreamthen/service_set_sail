@@ -7,9 +7,9 @@
     "antd": "^3.4.0",
     "moment": "^2.22.0",
     "prop-types": "^15.6.1",
-    "react": "^16.3.0",
+    "react": "^16.3.1",
     "react-addons": "^0.9.1-deprecated",
-    "react-dom": "^16.3.0",
+    "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
     "react-router": "^3.2.1",
     "redux": "^3.7.2",
@@ -43,8 +43,8 @@
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^1.0.1",
-    "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.1"
   },
   "scripts": {

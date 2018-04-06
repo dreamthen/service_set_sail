@@ -9,18 +9,11 @@ let middleware = [];
 
 const PRODUCTION = "pro";
 
-if(production === PRODUCTION) {
+if (production === PRODUCTION) {
     middleware = [...middleware, thunkMiddleware];
-}else {
+} else {
     middleware = [...middleware, thunkMiddleware, loggerMiddleware];
 }
 
-const compose_store = compose([
-    applyMiddleware(...middleware),
-    persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-])(createStore);
 
-const store = compose_store(reducers, {});
-
-export default store;
 
