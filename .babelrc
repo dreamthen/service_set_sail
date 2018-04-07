@@ -1,13 +1,13 @@
 {
   "presets": [
-    "react",
-    "stage-0",
     [
       "env",
       {
         "modules": false
       }
-    ]
+    ],
+    "stage-0",
+    "react"
   ],
   "plugins": [
     "transform-decorators-legacy",
@@ -19,6 +19,13 @@
         "polyfill": true,
         "regenerator": true,
         "moduleName": "babel-runtime"
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
       }
     ]
   ]

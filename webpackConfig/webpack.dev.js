@@ -31,18 +31,13 @@ const webpackDevConfig = {
             new UglifyJsPlugin({
                 sourceMap: true,
                 uglifyOptions: {
-                    cache: true,
-                    parallel: true,
                     compress: {
                         unused: false,
                         dead_code: false,
-                        warnings: true,
-                        inline: 1,
-                        keep_classnames: true,
-                        keep_fnames: true
+                        warnings: true
                     },
                     output: {
-                        comments: true
+                        comments: false
                     }
                 }
             })

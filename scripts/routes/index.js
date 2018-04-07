@@ -11,7 +11,7 @@ const routesView = (function bornRoute(routesConfig) {
                     {bornRoute(value["children"])}
                 </Route>
             ) : (
-                <Route/>
+                <Route path={value["path"]} component={value["component"]}/>
             );
     }
     return route;

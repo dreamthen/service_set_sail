@@ -30,7 +30,7 @@ const webpackDllConfig = {
                         warnings: true
                     },
                     output: {
-                        comments: true
+                        comments: false
                     }
                 }
             })

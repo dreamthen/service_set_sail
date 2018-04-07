@@ -1,16 +1,14 @@
 import React from "react";
-import ReactDOM from 'react-dom';
-const NameContext = React.createContext("Jack");
-// var ReactDOM  = require("react-dom");
-// import {Provider} from "react-redux";
-
-// import ReactDOM from "react-dom";
-
-
-// console.log('center app', ReactDOM.render);
+import {render} from "react-dom";
+import {Provider} from "react-redux";
+import {Router, browserHistory} from "react-router";
+import store from "./configs/appStoreConfig";
+import routes from "./routes";
+import "./stylesheets";
 
 
-
-ReactDOM.render(<div>
-    I'm Gary
-</div>, document.getElementById("service_disport"));
+render(<Provider store={store}>
+    <Router history={browserHistory}>
+        {routes}
+    </Router>
+</Provider>, document.querySelector("#service_disport"));

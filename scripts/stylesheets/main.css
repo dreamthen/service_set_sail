@@ -1,0 +1,70 @@
+@charset "utf-8";
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+.main-container {
+    width: 100%;
+}
+
+.main-container > .main-view-header {
+    width: 70%;
+    min-width: 960px;
+    margin: 0 auto;
+}
+
+.main-view-header > .main-view-navigator {
+    padding: 20px 15px;
+    background-color: #f6f5f5;
+    border: 1px solid #dedede
+}
+
+.main-view-navigator > .main-view-nav-func {
+    width: 33.3%;
+    height: 70px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    text-align: center;
+}
+
+.main-view-navigator > .main-view-nav-lastTenStage {
+    display: flex;
+    float: left;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 70px;
+    font-size: 16px;
+}
+
+.main-view-nav-lastTenStage > img {
+    width: 50px;
+}
+
+.main-view-navigator > .main-view-nav-awardResults {
+    float: right;
+}
+
+.main-view-navigator > .main-view-nav-timer {
+    margin: 0 auto;
+    text-align: center;
+    line-height: 70px;
+    font-size: 16px;
+}
+
+.main-view-nav-lastTenStage > .nav-lastTenStage {
+    line-height: 15px;
+}
+
+.main-view-navigator:after {
+    content: ".";
+    clear: both;
+    display: block;
+    width: auto;
+    height: 0;
+    visibility: hidden;
+}
+
