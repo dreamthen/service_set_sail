@@ -20,7 +20,11 @@ class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formatDuration: {}
+            formatDuration: {},
+            //展示的分钟数
+            minute: "",
+            //展示的秒数
+            second: ""
         };
     }
 
@@ -103,11 +107,18 @@ class Timer extends React.Component {
         }
         if (now >= start_time && (now + durationDate) <= end_time) {
             timer = setInterval(() => {
-                console.log(durationWork);
                 durationWork -= second;
                 if (Math.trunc(durationWork) <= 0) {
                     clearInterval(timer);
                     timeInterval.bind(this)();
+                } else {
+                    let durationWorkMinuteAndSecond = durationWork / 60 / 1000,
+                        floorDurationWork = Math.floor(durationWorkMinuteAndSecond),
+                        replaceMinute = (durationWorkMinuteAndSecond - floorDurationWork) * 60;
+                    this.setState({
+                        minute: `0${replaceMinute === 60 ? floorDurationWork + 1 : floorDurationWork}`.slice(-2),
+                        second: `0${(replaceMinute === 60 ? 0 : replaceMinute).toFixed(0)}`.slice(-2)
+                    });
                 }
             }, second);
         }
@@ -122,9 +133,26 @@ class Timer extends React.Component {
 
 
     render() {
+        const {
+            //展示的分钟数
+            minute,
+            //展示的秒数
+            second
+        } = this.state;
+        const {
+            //包裹容器的样式表
+            wrapClassName
+        } = this.props;
         return (
-            <span>
-
+            <span className={wrapClassName}>
+                <time>
+                    {minute}
+                </time>
+                分
+                <time>
+                    {second}
+                </time>
+                秒
             </span>
         )
     }

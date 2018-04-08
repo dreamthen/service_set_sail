@@ -42,7 +42,13 @@ class MainView extends React.Component {
 
                         </div>
                         <div className="main-view-nav-func main-view-nav-timer">
-                            下一期：<Timer type="m" start="12:00:00" end="00:30:00" duration={8} />
+                            下一期：<Timer
+                            wrapClassName="main-view-nav-timer-container"
+                            type="m"
+                            start="12:00:00"
+                            end="00:30:00"
+                            duration={8}
+                        />
                         </div>
                     </nav>
                 </header>

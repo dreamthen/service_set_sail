@@ -68,3 +68,21 @@ html, body {
     visibility: hidden;
 }
 
+.main-view-nav-timer > .main-view-nav-timer-container {
+    font-size:16px;
+}
+
+.main-view-nav-timer-container {
+    display: inline-block;
+    height: 70px;
+}
+
+.main-view-nav-timer-container > time {
+    width: 48px;
+    height: 48px;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: -5px;
+    font-size: 30px;
+}
+
