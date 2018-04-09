@@ -71,7 +71,9 @@ class MainView extends React.Component {
                             })
                         }
                     </div>
-
+                    <div className="main-view-section-branch">
+                        {children}
+                    </div>
                 </section>
             </main>
         )

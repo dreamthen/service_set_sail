@@ -2,7 +2,7 @@ const pathMode = "/keryi",
     pathDefault = "/bonuses/";
 let api = {};
 
-const isMock = false;
+let isMock = false;
 
 if (!isMock) {
     api = {
@@ -11,3 +11,5 @@ if (!isMock) {
 } else {
 
 }
+
+export default api;

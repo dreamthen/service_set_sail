@@ -1,16 +1,17 @@
 import axios_bonuses from "../configs/axiosConfig";
-import {message} from "antd";
 import api from "../configs/api";
 import sizeConfig from "../configs/sizeConfig";
+import actionTypeConfig from "../configs/actionTypeConfig";
+import errorConfig from "../configs/errorConfig";
 
 export function getBonusesList(pageNum) {
     return new Promise(function promise(resolve, reject) {
         axios_bonuses({
-            url: `${api.GET_BONUSES_LIST}`,
+            url: api.GET_BONUSES_LIST,
             method: "get",
             params: {
-                pageNum,
-                pageSize: sizeConfig.PAGE_SIZE
+                page_num: pageNum,
+                page_size: sizeConfig.PAGE_SIZE
             },
             headers: {},
             responseType: "json",
@@ -21,11 +22,22 @@ export function getBonusesList(pageNum) {
             data && data.length > 0 && resolve({bonusesList: data, total});
         }, function error(err) {
             let data = err.data,
-                head = data.head,
-                msg = head.msg;
-            message.warning(msg);
+                status = err.status;
+            errorConfig(status);
         }).catch(function catchError(error) {
             console.error(error);
         });
     });
+}
+
+/**
+ * 获取开奖结果列表
+ * @param payload
+ * @returns {{type: *}}
+ */
+export function getBonusesListAction(payload) {
+    return {
+        type: actionTypeConfig["GET_BONUSES_LIST_ACTION"],
+        payload
+    }
 }

@@ -12,12 +12,9 @@ axios_bonuses.interceptors.request.use(function resolve(request) {
 
 axios_bonuses.interceptors.response.use(function resolve(response) {
     let data = response["data"],
-        head = data["head"],
-        code = data["code"],
-        msg = data["msg"],
-        body = data["body"];
-    if (code === codeConfig["success"]) {
-        return body;
+        status = response["status"];
+    if (status === codeConfig["successCode"]) {
+        return data;
     }
     return Promise.reject(response);
 }, function reject(response) {
