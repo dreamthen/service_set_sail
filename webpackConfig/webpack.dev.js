@@ -97,7 +97,13 @@ const webpackDevConfig = {
     devServer: {
         host: "0.0.0.0",
         port: port,
-        proxy: {},
+        proxy: {
+            "/keryi/": {
+                target: "http://116.62.65.162:7001/",
+                secure: true,
+                pathRewrite: {"/keryi/": ""}
+            }
+        },
         historyApiFallback: true
     }
 };

@@ -15,3 +15,13 @@ export const routesConfig = [{
         }
     ]
 }];
+
+export const linkConfig = [{
+    to: "/prize",
+    active: true,
+    content: "结果",
+    iconClassName: ""
+}, {
+    to: "/graph",
+    content: "走势图"
+}];
