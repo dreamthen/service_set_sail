@@ -102,6 +102,7 @@ class MainView extends React.Component {
                             下一期：<Timer
                             wrapClassName="main-view-nav-timer-container"
                             type="m"
+                            surplus={}
                             start="12:00:00"
                             end="00:30:00"
                             duration={8}
