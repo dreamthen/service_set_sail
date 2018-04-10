@@ -1,35 +1,114 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Pagination, Table} from "antd";
+import sizeConfig from "../configs/sizeConfig";
+import {
+    getBonusesList,
+    getBonusesListAction
+} from "../actions/graph";
+import {graphTable} from "../configs/tableConfig";
 
 class GraphView extends React.Component {
     static propTypes = {
-
+        bonusesList: PropTypes.array,
+        current: PropTypes.number,
+        total: PropTypes.number
     };
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            tableHeight: window.innerHeight - 366,
+            tableWidth: 1888
+        };
+    }
+
+    componentDidMount() {
+        const {
+            getBonusesListHandler
+        } = this.props;
+        getBonusesListHandler.bind(this)({current: 1});
+    }
+
+    /**
+     * 点击分页，重新渲染
+     * @param page
+     */
+    loadMore(page) {
+        const {
+            getBonusesListHandler
+        } = this.props;
+        getBonusesListHandler.bind(this)({current: page});
     }
 
     render() {
+        const {
+            bonusesList,
+            current,
+            total
+        } = this.props;
+        const {
+            tableWidth,
+            tableHeight
+        } = this.state;
+        const {
+            loadMore
+        } = this;
+        const columns = graphTable();
         return (
-            <div>
-
-            </div>
+            <section className="main-view-graph-table">
+                <Table
+                    columns={columns}
+                    dataSource={bonusesList}
+                    pagination={false}
+                    rowClassName="main-view-graph-table-row"
+                    bordered={true}
+                    scroll={{x: tableWidth, y: tableHeight}}
+                />
+                <div className="main-view-graph-pagination">
+                    <Pagination
+                        current={current}
+                        showQuickJumper={true}
+                        pageSize={sizeConfig.PAGE_SIZE}
+                        showTotal={total => `共${total}条`}
+                        total={total}
+                        onChange={loadMore.bind(this)}
+                    />
+                </div>
+            </section>
         )
     }
 }
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
+    const {
+        isFresh
+    } = state.mainReducer;
     return {
-
+        ...state.graphTableReducer,
+        isFresh
     }
 }
 
-function mapDispatchToProps(dispatch, ownProps){
+function mapDispatchToProps(dispatch, ownProps) {
     return {
-
+        async getBonusesListHandler(pageNum) {
+            let bonuses = await getBonusesList.bind(this)(pageNum["current"]);
+            for (let [key, value] of bonuses["bonusesList"].entries()) {
+                let number = value["number"],
+                    num_arr = number.split(",");
+                if (num_arr.length > 0) {
+                    value["numberOne"] = num_arr[0];
+                    value["numberTwo"] = num_arr[1];
+                    value["numberThree"] = num_arr[2];
+                }
+            }
+            dispatch(getBonusesListAction({
+                ...pageNum,
+                ...bonuses
+            }));
+        }
     }
 }
 

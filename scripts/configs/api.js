@@ -6,7 +6,8 @@ let isMock = false;
 
 if (!isMock) {
     api = {
-        GET_BONUSES_LIST: `${pathMode + pathDefault}`
+        GET_BONUSES_LIST: `${pathMode + pathDefault}`,
+        GET_NEW_BONUSES: `${pathMode + pathDefault}new`
     };
 } else {
 

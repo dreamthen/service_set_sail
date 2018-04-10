@@ -79,7 +79,9 @@ class Timer extends React.Component {
             //到什么时间结束
             end,
             //间隔的时间
-            duration
+            duration,
+            //间隔时间结束之后,运行的函数方法
+            done
         } = this.props;
         const {
             //初始化的时间间隔
@@ -109,9 +111,11 @@ class Timer extends React.Component {
             timer = setInterval(() => {
                 durationWork -= second;
                 if (Math.trunc(durationWork) <= 0) {
+                    done(true);
                     clearInterval(timer);
                     timeInterval.bind(this)();
                 } else {
+                    done(false);
                     let durationWorkMinuteAndSecond = durationWork / 60 / 1000,
                         floorDurationWork = Math.floor(durationWorkMinuteAndSecond),
                         replaceMinute = (durationWorkMinuteAndSecond - floorDurationWork) * 60;
@@ -121,6 +125,11 @@ class Timer extends React.Component {
                     });
                 }
             }, second);
+        } else {
+            this.setState({
+                minute: '08',
+                second: '00'
+            });
         }
     }
 

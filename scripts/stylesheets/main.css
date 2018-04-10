@@ -54,6 +54,7 @@ html, body {
 
 .main-view-navigator > .main-view-nav-awardResults {
     float: right;
+    line-height: 70px;
 }
 
 .main-view-navigator > .main-view-nav-timer {
@@ -112,8 +113,74 @@ html, body {
     padding: 5px 10px;
 }
 
+.main-view-section .main-view-link:link {
+    text-decoration: none;
+}
+
+.main-view-section .main-view-link:active {
+    text-decoration: none;
+}
+
+.main-view-section .main-view-link:visited {
+    text-decoration: none;
+}
+
 .main-view-section .main-view-link-active {
+    position: relative;
     background-color: #355395;
 }
 
+.main-view-link-active .main-view-link-active-icon {
+    position: absolute;
+    border: 6px solid #21C8F5;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    width: 0;
+    height: 0;
+    margin: 31px auto 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
+.main-view-nav-awardResults > .main-view-nav-award {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    background-color: #f00;
+    margin: 0 4px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 20px;
+    vertical-align: -2px;
+}
+
+.main-view-nav-awardResults > .main-view-nav-award-sum {
+    background-color: #355395;
+}
+
+.main-view-nav-awardResults > .main-view-nav-award-hr {
+    display: inline-block;
+    width: 1px;
+    height: 38px;
+    border: none;
+    border-left: 1px solid #e8e8e8;
+    vertical-align: -13px;
+    margin: 0 4px;
+}
+
+.main-view-nav-awardResults > .main-view-nav-transform {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 2px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #00a0e9;
+    vertical-align: -1px;
+}

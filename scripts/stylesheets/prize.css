@@ -1,0 +1,35 @@
+.main-view-prize-table .main-view-prize-table-row {
+    background-color: #fff;
+    text-align: center;
+}
+
+.main-view-prize-table .main-view-prize-table-rowOrHead {
+    text-align: center;
+}
+
+.main-view-prize-table-rowOrHead.main-view-prize-table-rowOrHeadLeft {
+    text-align: left;
+}
+
+.main-view-prize-table > .main-view-prize-pagination {
+    margin-top: 6px;
+    text-align: right;
+}
+
+.main-view-prize-pagination .ant-pagination-item-active {
+    background-color: #355395;
+    border-color: #355395;
+}
+
+.main-view-prize-pagination .ant-pagination-item:focus, .main-view-prize-pagination .ant-pagination-item:hover {
+    border-color: #355395;
+}
+
+.main-view-prize-pagination .ant-pagination-item-active:focus, .main-view-prize-pagination .ant-pagination-item-active:hover {
+    background-color: #00a0e9;
+    border-color: #00a0e9;
+}
+
+.main-view-prize-pagination .ant-pagination-item-active:focus a, .main-view-prize-pagination .ant-pagination-item-active:hover a, .main-view-prize-pagination .ant-pagination-item-active a {
+    color: #fff;
+}

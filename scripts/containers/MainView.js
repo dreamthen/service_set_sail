@@ -4,14 +4,23 @@ import {connect} from "react-redux";
 import {Select} from "antd";
 import {Link} from "react-router";
 import {linkConfig} from "../configs/routesConfig";
+import sizeConfig from "../configs/sizeConfig";
 import {Timer} from "../components";
+import {
+    getNewBonuses,
+    getNewBonusesAction
+} from "../actions/main";
 
 const Option = Select.Option;
 
 class MainView extends React.Component {
     static propTypes = {
         //期号
-        id: PropTypes.string
+        id: PropTypes.string,
+        //列表
+        bonusesList: PropTypes.array,
+        //是否到八分钟刷新
+        isFresh: PropTypes.bool
     };
 
     constructor(props) {
@@ -19,13 +28,38 @@ class MainView extends React.Component {
         this.state = {};
     }
 
+    //八分钟时间后，调用获取新的中奖数字接口
+    getNewBonusesHandler(judgement) {
+        const {
+            //是否到八分钟刷新
+            isFresh,
+            getNewBonusesDispatch
+        } = this.props;
+        getNewBonusesDispatch.bind(this)(judgement, isFresh);
+    }
+
     render() {
         const {
             //期号
             id,
+            //列表
+            bonusesList,
             //子路由容器container
             children
         } = this.props;
+        const {
+            getNewBonusesHandler
+        } = this;
+        let newBonuses_arr,
+            newBonuses_sum,
+            newBonuses_sm_lge,
+            newBonuses_odd_even;
+        if (bonusesList.length > 0) {
+            newBonuses_arr = bonusesList[0]["number"].split(",");
+            newBonuses_sum = bonusesList[0]["sum"];
+            newBonuses_sm_lge = bonusesList[0]["sm_lge"];
+            newBonuses_odd_even = bonusesList[0]["odd_even"];
+        }
         return (
             <main className="main-container">
                 <header className="main-view-header">
@@ -43,7 +77,26 @@ class MainView extends React.Component {
                             <img src="/images/ruishi.png" alt="中国福利彩票快三"/>
                         </div>
                         <div className="main-view-nav-func main-view-nav-awardResults">
-
+                            {
+                                newBonuses_arr && newBonuses_arr.length > 0 && newBonuses_arr.map((bonusesItem, bonusesIndex) => {
+                                    return <span
+                                        key={bonusesIndex}
+                                        className="main-view-nav-award">
+                                        {bonusesItem}
+                                    </span>
+                                })
+                            }
+                            和值
+                            <span className="main-view-nav-award main-view-nav-award-sum">
+                                {newBonuses_sum}
+                            </span>
+                            <hr className="main-view-nav-award-hr"/>
+                            <span className="main-view-nav-award main-view-nav-transform">
+                                {sizeConfig[newBonuses_sm_lge]}
+                            </span>
+                            <span className="main-view-nav-award main-view-nav-transform">
+                                {sizeConfig[newBonuses_odd_even]}
+                            </span>
                         </div>
                         <div className="main-view-nav-func main-view-nav-timer">
                             下一期：<Timer
@@ -52,6 +105,7 @@ class MainView extends React.Component {
                             start="12:00:00"
                             end="00:30:00"
                             duration={8}
+                            done={getNewBonusesHandler.bind(this)}
                         />
                         </div>
                     </nav>
@@ -65,8 +119,17 @@ class MainView extends React.Component {
                                     className="main-view-link"
                                     activeClassName="main-view-link-active"
                                     key={linkIndex}
+                                    onClick={(e) => {
+                                        linkItem["active"] = true;
+                                    }}
                                 >
                                     {linkItem["content"]}
+                                    {
+                                        linkItem["active"] &&
+                                        <div className="main-view-link-active-icon" style={{borderTopColor: "#355395"}}>
+
+                                        </div>
+                                    }
                                 </Link>
                             })
                         }
@@ -81,13 +144,29 @@ class MainView extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+    let {
+        bonusesList
+    } = state.prizeTableReducer;
     return {
-        ...state.mainReducer
+        ...state.mainReducer,
+        bonusesList
     }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-    return {}
+    return {
+        getNewBonusesDispatch(judgement, isFresh) {
+            if (!isFresh && judgement) {
+                getNewBonuses.bind(this)().then(function resolve() {
+                    dispatch(getNewBonusesAction.bind(this)(judgement));
+                }.bind(this), function reject() {
+
+                }.bind(this));
+            } else if (isFresh && !judgement) {
+                dispatch(getNewBonusesAction.bind(this)(judgement));
+            }
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainView);
