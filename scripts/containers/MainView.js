@@ -6,6 +6,7 @@ import {Link} from "react-router";
 import {linkConfig} from "../configs/routesConfig";
 import sizeConfig from "../configs/sizeConfig";
 import {Timer} from "../components";
+import io from "socket.io-client";
 import {
     getNewBonuses,
     getNewBonusesAction
@@ -20,7 +21,9 @@ class MainView extends React.Component {
         //列表
         bonusesList: PropTypes.array,
         //是否到八分钟刷新
-        isFresh: PropTypes.bool
+        isFresh: PropTypes.bool,
+        //服务器还剩多少时间
+        time: PropTypes.number
     };
 
     constructor(props) {
@@ -38,17 +41,41 @@ class MainView extends React.Component {
         getNewBonusesDispatch.bind(this)(judgement, isFresh);
     }
 
+    getBonusesListHandler() {
+        const {
+            getBonusesListDispatch
+        } = this.props;
+        getBonusesListDispatch.bind(this)(false);
+    }
+
+    componentDidMount() {
+        let socket = io("http://116.62.65.162:7001");
+        socket.on("connect", () => {
+            console.log("server connect~");
+        });
+        socket.on("notify", (msg) => {
+            const {
+                getBonusesListDispatch
+            } = this.props;
+            getBonusesListDispatch.bind(this)(true);
+        });
+    }
+
+
     render() {
         const {
             //期号
             id,
             //列表
             bonusesList,
+            //服务器还剩多少时间
+            time,
             //子路由容器container
             children
         } = this.props;
         const {
-            getNewBonusesHandler
+            getNewBonusesHandler,
+            getBonusesListHandler
         } = this;
         let newBonuses_arr,
             newBonuses_sum,
@@ -102,11 +129,12 @@ class MainView extends React.Component {
                             下一期：<Timer
                             wrapClassName="main-view-nav-timer-container"
                             type="m"
-                            surplus={}
                             start="12:00:00"
                             end="00:30:00"
+                            surplus={time * 1000}
                             duration={8}
                             done={getNewBonusesHandler.bind(this)}
+                            changeRefresh={getBonusesListHandler.bind(this)}
                         />
                         </div>
                     </nav>
@@ -146,11 +174,13 @@ class MainView extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     let {
-        bonusesList
+        bonusesList,
+        time
     } = state.prizeTableReducer;
     return {
         ...state.mainReducer,
-        bonusesList
+        bonusesList,
+        time
     }
 }
 
@@ -166,6 +196,9 @@ function mapDispatchToProps(dispatch, ownProps) {
             } else if (isFresh && !judgement) {
                 dispatch(getNewBonusesAction.bind(this)(judgement));
             }
+        },
+        getBonusesListDispatch(judgement) {
+            dispatch(getNewBonusesAction.bind(this)(judgement));
         }
     }
 }

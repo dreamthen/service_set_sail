@@ -18,8 +18,9 @@ export function getBonusesList(pageNum) {
             withCredentials: true
         }).then(function done(response) {
             let data = response["data"],
-                total = response["total"];
-            data && data.length > 0 && resolve({bonusesList: data, total});
+                total = response["total"],
+                time = response["time"];
+            data && data.length > 0 && resolve({bonusesList: data, total, time});
         }, function error(err) {
             let data = err.data,
                 status = err.status;

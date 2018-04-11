@@ -3,7 +3,8 @@ import actionTypeConfig from "../configs/actionTypeConfig";
 const defaultState = {
     bonusesList: [],
     current: 1,
-    total: 0
+    total: 0,
+    time: 0
 };
 
 export function graphTableReducer(state = defaultState, action) {

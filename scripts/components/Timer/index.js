@@ -16,7 +16,9 @@ class Timer extends React.Component {
         //剩余的时间
         surplus: PropTypes.number,
         //间隔时间结束之后,运行的函数方法
-        done: PropTypes.func
+        done: PropTypes.func,
+        //服务器间隔时间结束之后,运行的函数方法
+        changeRefresh: PropTypes.func
     };
 
     constructor(props) {
@@ -28,6 +30,7 @@ class Timer extends React.Component {
             //展示的秒数
             second: ""
         };
+        this.timer = null;
     }
 
     //初始化间隔的时间
@@ -71,6 +74,17 @@ class Timer extends React.Component {
         this.setState({
             formatDuration
         });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const {
+            surplusTimeInterval
+        } = this;
+        if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = null;
+        }
+        surplusTimeInterval.bind(this)();
     }
 
     //倒计时
@@ -142,12 +156,12 @@ class Timer extends React.Component {
         let {
             surplus
         } = this.props;
-        let timer,
-            second = 1000;
-        timer = setInterval(() => {
-            surplus -= 1000;
+        let second = 1000;
+        this.timer = setInterval(() => {
+            surplus -= second;
             if (surplus <= 0) {
-                clearInterval(timer);
+                clearInterval(this.timer);
+                this.timer = null;
             } else {
                 let duration_surplus_minute_second = surplus / 60 / 1000,
                     duration_surplus_minute = Math.floor(duration_surplus_minute_second),

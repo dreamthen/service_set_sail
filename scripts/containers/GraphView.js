@@ -13,7 +13,9 @@ class GraphView extends React.Component {
     static propTypes = {
         bonusesList: PropTypes.array,
         current: PropTypes.number,
-        total: PropTypes.number
+        total: PropTypes.number,
+        time: PropTypes.number,
+        isFresh: PropTypes.bool
     };
 
     constructor(props) {
@@ -22,6 +24,15 @@ class GraphView extends React.Component {
             tableHeight: window.innerHeight - 366,
             tableWidth: 1888
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const {
+            getBonusesListHandler
+        } = this.props;
+        if (!this.props.isFresh && nextProps.isFresh) {
+            getBonusesListHandler.bind(this)({current: 1});
+        }
     }
 
     componentDidMount() {
