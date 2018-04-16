@@ -10,7 +10,7 @@ const webpackDllConfig = {
     mode: "development",
     devtool: "source-map",
     entry: {
-        vendor: ["react", "react-dom", "react-addons", "react-router", "redux", "redux-thunk", "redux-logger", "redux-saga", "redux-devtools", "antd", "react-redux", "prop-types", "moment"]
+        vendor: ["react", "react-dom", "react-addons", "react-router", "redux", "redux-thunk", "redux-logger", "redux-saga", "redux-devtools", "antd", "react-redux", "prop-types", "moment", "axios"]
     },
     output: {
         publicPath: PUBLIC_DIR,

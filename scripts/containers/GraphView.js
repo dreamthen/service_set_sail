@@ -5,9 +5,12 @@ import {Pagination, Table} from "antd";
 import sizeConfig from "../configs/sizeConfig";
 import {
     getBonusesList,
-    getBonusesListAction
+    getBonusesListAction,
+    resetBonusesAction
 } from "../actions/graph";
-import {graphTable} from "../configs/tableConfig";
+import {
+    graphTable
+} from "../configs/tableConfig";
 
 class GraphView extends React.Component {
     static propTypes = {
@@ -15,6 +18,7 @@ class GraphView extends React.Component {
         current: PropTypes.number,
         total: PropTypes.number,
         time: PropTypes.number,
+        count: PropTypes.string,
         isFresh: PropTypes.bool
     };
 
@@ -40,6 +44,13 @@ class GraphView extends React.Component {
             getBonusesListHandler
         } = this.props;
         getBonusesListHandler.bind(this)({current: 1});
+    }
+
+    componentWillUnmount() {
+        const {
+            resetBonusesHandler
+        } = this.props;
+        resetBonusesHandler.bind(this)();
     }
 
     /**
@@ -119,6 +130,9 @@ function mapDispatchToProps(dispatch, ownProps) {
                 ...pageNum,
                 ...bonuses
             }));
+        },
+        resetBonusesHandler() {
+            dispatch(resetBonusesAction.bind(this)());
         }
     }
 }

@@ -5,7 +5,8 @@ import {Pagination, Table} from "antd";
 import sizeConfig from "../configs/sizeConfig";
 import {
     getBonusesList,
-    getBonusesListAction
+    getBonusesListAction,
+    resetBonusesAction
 } from "../actions/prize";
 import {
     prizeTable
@@ -17,14 +18,14 @@ class PrizeView extends React.Component {
         current: PropTypes.number,
         total: PropTypes.number,
         time: PropTypes.number,
-        count: 0,
+        count: PropTypes.string,
         isFresh: PropTypes.bool
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            tableHeight: window.innerHeight - 266
+            tableHeight: window.innerHeight - 310
         };
     }
 
@@ -42,6 +43,13 @@ class PrizeView extends React.Component {
             getBonusesListHandler
         } = this.props;
         getBonusesListHandler.bind(this)({current: 1});
+    }
+
+    componentWillUnmount() {
+        const {
+            resetBonusesHandler
+        } = this.props;
+        resetBonusesHandler.bind(this)();
     }
 
     /**
@@ -110,6 +118,9 @@ function mapDispatchToProps(dispatch, ownProps) {
                 ...pageNum,
                 ...bonuses
             }));
+        },
+        resetBonusesHandler() {
+            dispatch(resetBonusesAction.bind(this)());
         }
     }
 }

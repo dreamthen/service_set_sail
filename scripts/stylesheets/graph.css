@@ -11,6 +11,10 @@
     text-align: left;
 }
 
+.main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-overAdd {
+    background-color: #FAFAFA;
+}
+
 .main-view-graph-table > .main-view-graph-pagination {
     margin-top: 6px;
     text-align: right;
@@ -26,8 +30,12 @@
 }
 
 .main-view-graph-pagination .ant-pagination-item-active:focus, .main-view-graph-pagination .ant-pagination-item-active:hover {
-    background-color: #00a0e9;
-    border-color: #00a0e9;
+    background-color: #355395;
+    border-color: #355395;
+}
+
+.main-view-graph-pagination .ant-pagination-item:focus a, .main-view-graph-pagination .ant-pagination-item:hover a {
+    color: #355395;
 }
 
 .main-view-graph-pagination .ant-pagination-item-active:focus a, .main-view-graph-pagination .ant-pagination-item-active:hover a, .main-view-graph-pagination .ant-pagination-item-active a {

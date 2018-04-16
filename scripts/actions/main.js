@@ -31,3 +31,10 @@ export function getNewBonusesAction(payload) {
         payload
     }
 }
+
+export function changeNewBonusesIdAction(payload) {
+    return {
+        type: actionTypeConfig["CHANGE_NEW_BONUSES_ID_ACTION"],
+        payload
+    }
+}

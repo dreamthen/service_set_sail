@@ -85,21 +85,81 @@ export function graphTable() {
         dataIndex: "numberOne",
         width: 40,
         colSpan: 3,
-        className: "main-view-graph-table-rowOrHead"
+        className: "main-view-graph-table-rowOrHead",
+        render(text, record) {
+            switch (record["type"]) {
+                case "black":
+                    return <div>
+                        {text}
+                    </div>;
+                case "red":
+                    return <div style={{color: "#f00"}}>
+                        {text}
+                    </div>;
+                case "blue":
+                    return <div style={{color: "#00f"}}>
+                        {text}
+                    </div>;
+                default:
+                    return <div>
+                        {text}
+                    </div>;
+            }
+        }
     }, {
         title: "开奖号码",
         key: "numberTwo",
         dataIndex: "numberTwo",
         width: 40,
         colSpan: 0,
-        className: "main-view-graph-table-rowOrHead"
+        className: "main-view-graph-table-rowOrHead",
+        render(text, record) {
+            switch (record["type"]) {
+                case "black":
+                    return <div>
+                        {text}
+                    </div>;
+                case "red":
+                    return <div style={{color: "#f00"}}>
+                        {text}
+                    </div>;
+                case "blue":
+                    return <div style={{color: "#00f"}}>
+                        {text}
+                    </div>;
+                default:
+                    return <div>
+                        {text}
+                    </div>;
+            }
+        }
     }, {
         title: "开奖号码",
         key: "numberThree",
         dataIndex: "numberThree",
         width: 40,
         colSpan: 0,
-        className: "main-view-graph-table-rowOrHead"
+        className: "main-view-graph-table-rowOrHead",
+        render(text, record) {
+            switch (record["type"]) {
+                case "black":
+                    return <div>
+                        {text}
+                    </div>;
+                case "red":
+                    return <div style={{color: "#f00"}}>
+                        {text}
+                    </div>;
+                case "blue":
+                    return <div style={{color: "#00f"}}>
+                        {text}
+                    </div>;
+                default:
+                    return <div>
+                        {text}
+                    </div>;
+            }
+        }
     }, {
         title: "开奖号码分布",
         children: select_prize_number.map((numberItem, numberIndex) => {
@@ -113,9 +173,31 @@ export function graphTable() {
                     let num_arr = text.split(",");
                     for (let [key, value] of num_arr.entries()) {
                         if (value === numberItem) {
-                            return value;
-                        } else {
-                            return "";
+                            switch (record["type"]) {
+                                case "black":
+                                    return <div>
+                                        {value}
+                                    </div>;
+                                case "red":
+                                    return <div style={{color: "#f00"}}>
+                                        {value}
+                                    </div>;
+                                case "blue":
+                                    return <div style={{color: "#00f"}}>
+                                        {value}
+                                    </div>;
+                                default:
+                                    return <div
+                                        style={{
+                                            height: 19,
+                                            lineHeight: 1.36,
+                                            backgroundColor: "#3182B3",
+                                            borderRadius: "50%",
+                                            color: "#fff"
+                                        }}>
+                                        {value}
+                                    </div>;
+                            }
                         }
                     }
                 }
@@ -129,10 +211,27 @@ export function graphTable() {
                 key: `sum${sumIndex}`,
                 dataIndex: "sum",
                 width: 52,
-                className: "main-view-graph-table-rowOrHead",
+                className: sumItem > 10 ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === sumItem) {
-                        return text;
+                        switch (record["type"]) {
+                            case "black":
+                                return <div>
+                                    {text}
+                                </div>;
+                            case "red":
+                                return <div style={{color: "#f00"}}>
+                                    {text}
+                                </div>;
+                            case "blue":
+                                return <div style={{color: "#00f"}}>
+                                    {text}
+                                </div>;
+                            default:
+                                return <div>
+                                    {text}
+                                </div>;
+                        }
                     } else {
                         return "";
                     }
@@ -186,7 +285,24 @@ export function graphTable() {
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === spanItem) {
-                        return text;
+                        switch (record["type"]) {
+                            case "black":
+                                return <div>
+                                    {text}
+                                </div>;
+                            case "red":
+                                return <div style={{color: "#f00"}}>
+                                    {text}
+                                </div>;
+                            case "blue":
+                                return <div style={{color: "#00f"}}>
+                                    {text}
+                                </div>;
+                            default:
+                                return <div>
+                                    {text}
+                                </div>;
+                        }
                     } else {
                         return "";
                     }

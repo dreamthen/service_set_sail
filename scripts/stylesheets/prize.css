@@ -26,8 +26,12 @@
 }
 
 .main-view-prize-pagination .ant-pagination-item-active:focus, .main-view-prize-pagination .ant-pagination-item-active:hover {
-    background-color: #00a0e9;
-    border-color: #00a0e9;
+    background-color: #355395;
+    border-color: #355395;
+}
+
+.main-view-prize-pagination .ant-pagination-item:focus a, .main-view-prize-pagination .ant-pagination-item:hover a {
+    color: #355395;
 }
 
 .main-view-prize-pagination .ant-pagination-item-active:focus a, .main-view-prize-pagination .ant-pagination-item-active:hover a, .main-view-prize-pagination .ant-pagination-item-active a {

@@ -42,3 +42,13 @@ export function getBonusesListAction(payload) {
         payload
     }
 }
+
+/**
+ * 重置开奖结果列表
+ * @returns {{type: *}}
+ */
+export function resetBonusesAction() {
+    return {
+        type: actionTypeConfig["RESET_BONUSES_ACTION"]
+    }
+}

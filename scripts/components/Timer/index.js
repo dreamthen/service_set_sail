@@ -28,7 +28,9 @@ class Timer extends React.Component {
             //展示的分钟数
             minute: "",
             //展示的秒数
-            second: ""
+            second: "",
+            //剩余的时间
+            surplus: 0
         };
         this.timer = null;
     }
@@ -78,13 +80,36 @@ class Timer extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         const {
+            timeInterval,
             surplusTimeInterval
         } = this;
-        if (this.timer) {
-            clearInterval(this.timer);
-            this.timer = null;
+        const {
+            surplus,
+            count,
+            changeRefresh
+        } = this.props;
+        if (surplus !== nextProps.surplus) {
+            this.setState({
+                surplus: nextProps.surplus
+            }, () => {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                }
+                surplusTimeInterval.bind(this)();
+            });
         }
-        surplusTimeInterval.bind(this)();
+        if (surplus === undefined) {
+            timeInterval.bind(this)();
+        }
+        if (count && count !== nextProps.count) {
+            if (this.timer) {
+                clearInterval(this.timer);
+                this.timer = null;
+            }
+            changeRefresh();
+            surplusTimeInterval.bind(this)();
+        }
     }
 
     //倒计时
@@ -155,7 +180,7 @@ class Timer extends React.Component {
     surplusTimeInterval() {
         let {
             surplus
-        } = this.props;
+        } = this.state;
         let second = 1000;
         this.timer = setInterval(() => {
             surplus -= second;
@@ -168,25 +193,14 @@ class Timer extends React.Component {
                     duration_surplus_second = (duration_surplus_minute_second - duration_surplus_minute) * 60;
                 this.setState({
                     minute: `0${duration_surplus_second.toFixed(0) === "60" ? duration_surplus_minute + 1 : duration_surplus_minute}`.slice(-2),
-                    second: `0${duration_surplus_second.toFixed(0) === "60" ? "0" : duration_surplus_second.toFixed(0)}`
+                    second: `0${duration_surplus_second.toFixed(0) === "60" ? "0" : duration_surplus_second.toFixed(0)}`.slice(-2)
                 });
             }
         }, 1000);
     }
 
     componentDidMount() {
-        const {
-            timeInterval,
-            surplusTimeInterval
-        } = this;
-        const {
-            surplus
-        } = this.props;
-        if (surplus) {
-            surplusTimeInterval.bind(this)();
-        } else {
-            timeInterval.bind(this)();
-        }
+
     }
 
 
