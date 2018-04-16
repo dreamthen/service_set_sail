@@ -9,15 +9,14 @@ html, body {
 }
 
 .main-container > .main-view-header {
-    width: 70%;
-    min-width: 960px;
+    width: 100%;
+    padding: 0 6px;
     margin: 0 auto;
 }
 
 .main-container > .main-view-section {
-    width: 70%;
-    min-width: 960px;
-    margin: 20px auto 0 auto;
+    width: calc(100% - 12px);
+    margin: 20px 6px 0 6px;
     background-color: #f6f5f5;
     border: 1px solid #dedede;
 }

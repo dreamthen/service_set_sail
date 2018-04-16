@@ -70,7 +70,7 @@ export function graphTable() {
         title: "期号",
         key: "id",
         dataIndex: "id",
-        width: 100,
+        width: "6%",
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             return (
@@ -83,7 +83,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberOne",
         dataIndex: "numberOne",
-        width: 40,
+        width: 20,
         colSpan: 3,
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
@@ -110,7 +110,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberTwo",
         dataIndex: "numberTwo",
-        width: 40,
+        width: 20,
         colSpan: 0,
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
@@ -137,7 +137,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberThree",
         dataIndex: "numberThree",
-        width: 40,
+        width: 20,
         colSpan: 0,
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
@@ -167,7 +167,7 @@ export function graphTable() {
                 title: `0${numberItem}`,
                 key: `number${numberIndex}`,
                 dataIndex: "number",
-                width: 52,
+                width: "3%",
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     let num_arr = text.split(",");
@@ -210,7 +210,7 @@ export function graphTable() {
                 title: `0${sumItem}`.slice(-2),
                 key: `sum${sumIndex}`,
                 dataIndex: "sum",
-                width: 52,
+                width: "3%",
                 className: sumItem > 10 ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === sumItem) {
@@ -245,7 +245,7 @@ export function graphTable() {
                 title: sizeConfig[smLgeItem],
                 key: `sm_lge_${smLgeIndex}`,
                 dataIndex: "sm_lge",
-                width: 52,
+                width: "2%",
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === smLgeItem) {
@@ -263,7 +263,7 @@ export function graphTable() {
                 title: sizeConfig[oddEvenItem],
                 key: `odd_even_${oddEvenIndex}`,
                 dataIndex: "odd_even",
-                width: 52,
+                width: "2%",
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === oddEvenItem) {
@@ -281,7 +281,7 @@ export function graphTable() {
                 title: `${spanItem}`,
                 key: `span${spanIndex}`,
                 dataIndex: "span",
-                width: 52,
+                width: "2.5%",
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === spanItem) {

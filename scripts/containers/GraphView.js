@@ -25,8 +25,7 @@ class GraphView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHeight: window.innerHeight - 366,
-            tableWidth: 1888
+            tableHeight: window.innerHeight - 366
         };
     }
 
@@ -86,7 +85,7 @@ class GraphView extends React.Component {
                     pagination={false}
                     rowClassName="main-view-graph-table-row"
                     bordered={true}
-                    scroll={{x: tableWidth, y: tableHeight}}
+                    scroll={{y: tableHeight}}
                 />
                 <div className="main-view-graph-pagination">
                     <Pagination

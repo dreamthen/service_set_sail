@@ -41,3 +41,8 @@
 .main-view-graph-pagination .ant-pagination-item-active:focus a, .main-view-graph-pagination .ant-pagination-item-active:hover a, .main-view-graph-pagination .ant-pagination-item-active a {
     color: #fff;
 }
+
+.main-view-graph-table .ant-table-thead > tr > th, .main-view-graph-table .ant-table-tbody > tr > td {
+    word-break: normal;
+    padding: 16px 0;
+}
