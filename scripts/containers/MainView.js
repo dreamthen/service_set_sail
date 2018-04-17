@@ -175,8 +175,8 @@ class MainView extends React.Component {
             newBonuses_odd_even,
             bonusesList_last_ten_stage = bonusesList.slice(0, 10);
         if (bonusesList.length > 0) {
-            newBonuses_id = bonusesList[0]["id"];
-            newBonuses_select_id = bonusesList[id]["id"];
+            newBonuses_id = bonusesList[0]["no"];
+            newBonuses_select_id = bonusesList[id]["no"];
             newBonuses_arr = bonusesList[id]["number"].split(",");
             newBonuses_sum = bonusesList[id]["sum"];
             newBonuses_sm_lge = bonusesList[id]["sm_lge"];
@@ -205,7 +205,7 @@ class MainView extends React.Component {
                                 <Select
                                     className="main-view-select"
                                     size="default"
-                                    style={{margin: "6px 0 0 0", width: 80}}
+                                    style={{margin: "6px 0 0 0", width: 114}}
                                     value={newBonuses_select_id}
                                     onChange={changeNewBonusesId.bind(this, "id")}
                                 >
@@ -216,7 +216,7 @@ class MainView extends React.Component {
                                                     key={bonusesIndex}
                                                     value={bonusesItem["id"]}
                                                 >
-                                                    {bonusesItem["id"]}
+                                                    {bonusesItem["no"]}
                                                 </Option>
                                             )
                                         })

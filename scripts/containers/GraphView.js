@@ -27,6 +27,7 @@ class GraphView extends React.Component {
         this.state = {
             tableHeight: window.innerHeight - 366
         };
+        this.canvasDOMInstance = new Map();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -36,6 +37,10 @@ class GraphView extends React.Component {
         if (!this.props.isFresh && nextProps.isFresh) {
             getBonusesListHandler.bind(this)({current: 1});
         }
+    }
+
+    componentDidUpdate() {
+        console.log(this.canvasDOMInstance);
     }
 
     componentDidMount() {
@@ -70,13 +75,12 @@ class GraphView extends React.Component {
             total
         } = this.props;
         const {
-            tableWidth,
             tableHeight
         } = this.state;
         const {
             loadMore
         } = this;
-        const columns = graphTable();
+        const columns = graphTable.bind(this)();
         return (
             <section className="main-view-graph-table">
                 <Table
