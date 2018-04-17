@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {render} from "react-dom"
 import {connect} from "react-redux";
 import {Pagination, Table} from "antd";
 import sizeConfig from "../configs/sizeConfig";
@@ -24,9 +25,7 @@ class GraphView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            tableHeight: window.innerHeight - 366
-        };
+        this.state = {};
         this.canvasDOMInstance = new Map();
     }
 
@@ -40,7 +39,58 @@ class GraphView extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.canvasDOMInstance);
+        let table = this.table,
+            table_head_height = table.querySelectorAll(".ant-table-thead")[0].clientHeight,
+            tableLeft = table.getBoundingClientRect().left,
+            tableTop = table.getBoundingClientRect().top,
+            canvasDOMInstance = this.canvasDOMInstance,
+            size = canvasDOMInstance.size,
+            canvasDOMInstance_arr = [],
+            canvasDOMInstance_result = [],
+            index = 0,
+            canvasDOM = [];
+        if (canvasDOMInstance && size > 0) {
+            for (let [mapKey, mapValue] of canvasDOMInstance.entries()) {
+                let node = mapValue;
+                node["top"] -= tableTop;
+                node["left"] -= tableLeft;
+                canvasDOMInstance_arr = [...canvasDOMInstance_arr, node];
+            }
+            while (index < canvasDOMInstance_arr.length - 1) {
+                let canvasTop_next = canvasDOMInstance_arr[index + 1]["top"],
+                    canvasTop = canvasDOMInstance_arr[index]["top"],
+                    canvasLeft_next = canvasDOMInstance_arr[index + 1]["left"],
+                    canvasLeft = canvasDOMInstance_arr[index]["left"],
+                    height = Math.abs(canvasTop_next - canvasTop),
+                    width = Math.abs(canvasLeft_next - canvasLeft),
+                    top = height * index + height / 2 + table_head_height,
+                    left = canvasLeft_next > canvasLeft ? (canvasLeft + 20) : (canvasLeft_next + 20);
+                canvasDOMInstance_result = [...canvasDOMInstance_result, {
+                    height,
+                    width: width ? width : width + 2,
+                    top,
+                    left
+                }];
+                index++;
+            }
+            // canvasDOM = [...canvasDOM,
+            //     <canvas width={value["width"]}
+            //             height={value["height"]}
+            //             style={{position: "absolute", top: value["top"], left: value["left"]}}
+            //     >
+            //
+            //     </canvas>];
+            for (let [key, value] of canvasDOMInstance_result.entries()) {
+                let canvas_node = document.createElement("canvas");
+                canvas_node["width"] = value["width"];
+                canvas_node["height"] = value["height"];
+                canvas_node["style"] = `position:absolute;top:${value["top"]}px;left:${value["left"]}px;`;
+                canvasDOM = [...canvasDOM, canvas_node];
+            }
+            for (let [key, value] of canvasDOM.entries()) {
+                table.appendChild(value);
+            }
+        }
     }
 
     componentDidMount() {
@@ -75,21 +125,19 @@ class GraphView extends React.Component {
             total
         } = this.props;
         const {
-            tableHeight
-        } = this.state;
-        const {
             loadMore
         } = this;
         const columns = graphTable.bind(this)();
         return (
-            <section className="main-view-graph-table">
+            <section ref={(ref) => {
+                this.table = ref
+            }} className="main-view-graph-table">
                 <Table
                     columns={columns}
                     dataSource={bonusesList}
                     pagination={false}
                     rowClassName="main-view-graph-table-row"
                     bordered={true}
-                    scroll={{y: tableHeight}}
                 />
                 <div className="main-view-graph-pagination">
                     <Pagination

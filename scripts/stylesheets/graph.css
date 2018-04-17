@@ -1,3 +1,7 @@
+.main-view-graph-table {
+    position: relative;
+}
+
 .main-view-graph-table .main-view-graph-table-row {
     background-color: #fff;
     text-align: center;
