@@ -16,7 +16,7 @@ export const routesConfig = [{
     ]
 }];
 
-export const linkConfig = [{
+export let linkConfig = [{
     to: "/prize",
     active: true,
     content: "结果",

@@ -26,7 +26,10 @@ class GraphView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.canvasDOMInstance = new Map();
+        this.canvasDOMSumInstance = new Map();
+        this.canvasDOMCutBayInstance = new Map();
+        this.canvasDOMSum = null;
+        this.canvasDOMCutBay = null;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,63 +41,92 @@ class GraphView extends React.Component {
         }
     }
 
-    componentDidUpdate() {
-        let table = this.table,
-            table_head_height = table.querySelectorAll(".ant-table-thead")[0].clientHeight,
-            tableLeft = table.getBoundingClientRect().left,
-            tableTop = table.getBoundingClientRect().top,
-            canvasDOMInstance = this.canvasDOMInstance,
-            size = canvasDOMInstance.size,
-            canvasDOMInstance_arr = [],
-            canvasDOMInstance_result = [],
-            index = 0,
-            canvasDOM = [];
-        if (canvasDOMInstance && size > 0) {
-            for (let [mapKey, mapValue] of canvasDOMInstance.entries()) {
-                let node = mapValue;
-                node["top"] -= tableTop;
-                node["left"] -= tableLeft;
-                canvasDOMInstance_arr = [...canvasDOMInstance_arr, node];
+    /**
+     * 和值折线
+     */
+    Stroke(domInstance, dom) {
+        return new Promise(function promise(resolve, reject) {
+            let table = this.table,
+                table_head_height = table.querySelectorAll(".ant-table-thead")[0].clientHeight,
+                tableLeft = table.getBoundingClientRect().left,
+                tableTop = table.getBoundingClientRect().top,
+                canvasDOMSumInstance = this[domInstance],
+                size = canvasDOMSumInstance.size,
+                canvasDOMInstance_arr = [],
+                canvasDOMInstance_result = [],
+                index = 0,
+                canvasDOMContainer = null,
+                canvasDOM = [];
+            if (this[dom]) {
+                table.removeChild(this[dom]);
+                this[dom] = null;
             }
-            while (index < canvasDOMInstance_arr.length - 1) {
-                let canvasTop_next = canvasDOMInstance_arr[index + 1]["top"],
-                    canvasTop = canvasDOMInstance_arr[index]["top"],
-                    canvasLeft_next = canvasDOMInstance_arr[index + 1]["left"],
-                    canvasLeft = canvasDOMInstance_arr[index]["left"],
-                    height = Math.abs(canvasTop_next - canvasTop),
-                    width = Math.abs(canvasLeft_next - canvasLeft),
-                    top = height * index + height / 2 + table_head_height,
-                    left = canvasLeft_next > canvasLeft ? (canvasLeft + 20) : (canvasLeft_next + 20),
-                    isTransform = canvasLeft_next < canvasLeft;
-                canvasDOMInstance_result = [...canvasDOMInstance_result, {
-                    height,
-                    width: width ? width : width + 2,
-                    top,
-                    left,
-                    isTransform
-                }];
-                index++;
-            }
-            for (let [key, value] of canvasDOMInstance_result.entries()) {
-                let canvas_node = document.createElement("canvas");
-                canvas_node["width"] = value["width"];
-                canvas_node["height"] = value["height"];
-                canvas_node["style"] = `position:absolute;top:${value["top"]}px;left:${value["left"]}px;`;
-                let canvas_node_ctx = canvas_node.getContext("2d");
-                if (value["isTransform"]) {
-                    canvas_node_ctx.moveTo(value["width"], 0);
-                    canvas_node_ctx.lineTo(0, value["height"]);
-                } else {
-                    canvas_node_ctx.moveTo(0, 0);
-                    canvas_node_ctx.lineTo(value["width"], value["height"]);
+            if (canvasDOMSumInstance && size > 0) {
+                canvasDOMContainer = document.createElement("div");
+                canvasDOMContainer["style"] = "position:absolute;width:100%;height:100%;top:0;left:0";
+                for (let [mapKey, mapValue] of canvasDOMSumInstance.entries()) {
+                    let node = mapValue;
+                    node["top"] -= tableTop;
+                    node["left"] -= tableLeft;
+                    canvasDOMInstance_arr = [...canvasDOMInstance_arr, node];
                 }
-                canvas_node_ctx.stroke();
-                canvasDOM = [...canvasDOM, canvas_node];
+                while (index < canvasDOMInstance_arr.length - 1) {
+                    let canvasTop_next = canvasDOMInstance_arr[index + 1]["top"],
+                        canvasTop = canvasDOMInstance_arr[index]["top"],
+                        canvasLeft_next = canvasDOMInstance_arr[index + 1]["left"],
+                        canvasLeft = canvasDOMInstance_arr[index]["left"],
+                        canvasType = canvasDOMInstance_arr[index]["type"],
+                        height = Math.abs(canvasTop_next - canvasTop),
+                        width = Math.abs(canvasLeft_next - canvasLeft),
+                        top = height * index + height / 2 + table_head_height,
+                        left = canvasLeft_next > canvasLeft ? (canvasLeft + 20) : (canvasLeft_next + 20),
+                        isTransform = canvasLeft_next < canvasLeft;
+                    canvasDOMInstance_result = [...canvasDOMInstance_result, {
+                        height,
+                        width: width ? width : width + 2,
+                        top,
+                        left,
+                        isTransform,
+                        type: canvasType
+                    }];
+                    index++;
+                }
+                for (let [key, value] of canvasDOMInstance_result.entries()) {
+                    let canvas_node = document.createElement("canvas");
+                    canvas_node["width"] = value["width"];
+                    canvas_node["height"] = value["height"];
+                    canvas_node["style"] = `position:absolute;top:${value["top"]}px;left:${value["left"]}px;`;
+                    let canvas_node_ctx = canvas_node.getContext("2d");
+                    if (value["isTransform"]) {
+                        canvas_node_ctx.moveTo(value["width"], 0);
+                        canvas_node_ctx.lineTo(0, value["height"]);
+                    } else {
+                        canvas_node_ctx.moveTo(0, 0);
+                        canvas_node_ctx.lineTo(value["width"], value["height"]);
+                    }
+                    canvas_node_ctx.strokeStyle = value["type"];
+                    canvas_node_ctx.stroke();
+                    canvasDOM = [...canvasDOM, canvas_node];
+                }
+                for (let [key, value] of canvasDOM.entries()) {
+                    canvasDOMContainer.appendChild(value);
+                }
+                this[dom] = canvasDOMContainer;
+                table.appendChild(this[dom]);
             }
-            for (let [key, value] of canvasDOM.entries()) {
-                table.appendChild(value);
-            }
-        }
+            resolve();
+        }.bind(this));
+    }
+
+    componentDidUpdate() {
+        const {
+            Stroke
+        } = this;
+        Stroke.bind(this)("canvasDOMSumInstance", "canvasDOMSum").then(function resolve() {
+            Stroke.bind(this)("canvasDOMCutBayInstance", "canvasDOMCutBay");
+        }.bind(this), function reject() {
+
+        }.bind(this));
     }
 
     componentDidMount() {

@@ -67,7 +67,8 @@ export function graphTable() {
         select_prize_number_span = [0, 1, 2, 3, 4, 5],
         select_prize_number_sm_lge = ["sm", "lge"],
         select_prize_number_odd_even = ["odd", "even"];
-    self.canvasDOMInstance = new Map();
+    self.canvasDOMSumInstance = new Map();
+    self.canvasDOMCutBayInstance = new Map();
     return [{
         title: "期号",
         key: "id",
@@ -221,25 +222,25 @@ export function graphTable() {
                         switch (record["type"]) {
                             case "black":
                                 return <div ref={(ref) => {
-                                    getCanvasTopOrLeft(self, ref, record["id"], "canvasDOMInstance");
+                                    getCanvasTopOrLeft(self, ref, record["id"], record["type"], "canvasDOMSumInstance");
                                 }}>
                                     {text}
                                 </div>;
                             case "red":
                                 return <div style={{color: "#f00"}} ref={(ref) => {
-                                    getCanvasTopOrLeft(self, ref, record["id"], "canvasDOMInstance");
+                                    getCanvasTopOrLeft(self, ref, record["id"], record["type"], "canvasDOMSumInstance");
                                 }}>
                                     {text}
                                 </div>;
                             case "blue":
                                 return <div style={{color: "#00f"}} ref={(ref) => {
-                                    getCanvasTopOrLeft(self, ref, record["id"], "canvasDOMInstance");
+                                    getCanvasTopOrLeft(self, ref, record["id"], record["type"], "canvasDOMSumInstance");
                                 }}>
                                     {text}
                                 </div>;
                             default:
                                 return <div ref={(ref) => {
-                                    getCanvasTopOrLeft(self, ref, record["id"], "canvasDOMInstance");
+                                    getCanvasTopOrLeft(self, ref, record["id"], "black", "canvasDOMSumInstance");
                                 }}>
                                     {text}
                                 </div>;
@@ -299,19 +300,27 @@ export function graphTable() {
                     if (text === spanItem) {
                         switch (record["type"]) {
                             case "black":
-                                return <div>
+                                return <div ref={(ref) => {
+                                    getCanvasTopOrLeft(self, ref, record["id"], record["type"], "canvasDOMCutBayInstance");
+                                }}>
                                     {text}
                                 </div>;
                             case "red":
-                                return <div style={{color: "#f00"}}>
+                                return <div style={{color: "#f00"}} ref={(ref) => {
+                                    getCanvasTopOrLeft(self, ref, record["id"], record["type"], "canvasDOMCutBayInstance");
+                                }}>
                                     {text}
                                 </div>;
                             case "blue":
-                                return <div style={{color: "#00f"}}>
+                                return <div style={{color: "#00f"}} ref={(ref) => {
+                                    getCanvasTopOrLeft(self, ref, record["id"], record["type"], "canvasDOMCutBayInstance");
+                                }}>
                                     {text}
                                 </div>;
                             default:
-                                return <div>
+                                return <div ref={(ref) => {
+                                    getCanvasTopOrLeft(self, ref, record["id"], "black", "canvasDOMCutBayInstance");
+                                }}>
                                     {text}
                                 </div>;
                         }
@@ -324,13 +333,14 @@ export function graphTable() {
     }]
 }
 
-export function getCanvasTopOrLeft(self, ref, index, name) {
+export function getCanvasTopOrLeft(self, ref, index, type, name) {
     ref &&
     ref.getBoundingClientRect().top !== null &&
     ref.getBoundingClientRect().left !== null &&
     !self[name].has(index) &&
     self[name].set(index, {
         top: ref.getBoundingClientRect().top,
-        left: ref.getBoundingClientRect().left
+        left: ref.getBoundingClientRect().left,
+        type
     });
 }

@@ -153,7 +153,9 @@ class MainView extends React.Component {
             //length服务器调用的次数
             count,
             //length服务器调用的次数
-            graph_count
+            graph_count,
+            //路由props
+            router
         } = this.props;
         const {
             getNewBonusesHandler,
@@ -279,7 +281,7 @@ class MainView extends React.Component {
                                 >
                                     {linkItem["content"]}
                                     {
-                                        linkItem["active"] &&
+                                        linkItem["to"] === router["location"]["pathname"] &&
                                         <div className="main-view-link-active-icon" style={{borderTopColor: "#355395"}}>
 
                                         </div>
