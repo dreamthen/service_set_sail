@@ -64,27 +64,31 @@ class GraphView extends React.Component {
                     height = Math.abs(canvasTop_next - canvasTop),
                     width = Math.abs(canvasLeft_next - canvasLeft),
                     top = height * index + height / 2 + table_head_height,
-                    left = canvasLeft_next > canvasLeft ? (canvasLeft + 20) : (canvasLeft_next + 20);
+                    left = canvasLeft_next > canvasLeft ? (canvasLeft + 20) : (canvasLeft_next + 20),
+                    isTransform = canvasLeft_next < canvasLeft;
                 canvasDOMInstance_result = [...canvasDOMInstance_result, {
                     height,
                     width: width ? width : width + 2,
                     top,
-                    left
+                    left,
+                    isTransform
                 }];
                 index++;
             }
-            // canvasDOM = [...canvasDOM,
-            //     <canvas width={value["width"]}
-            //             height={value["height"]}
-            //             style={{position: "absolute", top: value["top"], left: value["left"]}}
-            //     >
-            //
-            //     </canvas>];
             for (let [key, value] of canvasDOMInstance_result.entries()) {
                 let canvas_node = document.createElement("canvas");
                 canvas_node["width"] = value["width"];
                 canvas_node["height"] = value["height"];
                 canvas_node["style"] = `position:absolute;top:${value["top"]}px;left:${value["left"]}px;`;
+                let canvas_node_ctx = canvas_node.getContext("2d");
+                if (value["isTransform"]) {
+                    canvas_node_ctx.moveTo(value["width"], 0);
+                    canvas_node_ctx.lineTo(0, value["height"]);
+                } else {
+                    canvas_node_ctx.moveTo(0, 0);
+                    canvas_node_ctx.lineTo(value["width"], value["height"]);
+                }
+                canvas_node_ctx.stroke();
                 canvasDOM = [...canvasDOM, canvas_node];
             }
             for (let [key, value] of canvasDOM.entries()) {
