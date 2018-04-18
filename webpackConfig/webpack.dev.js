@@ -18,7 +18,8 @@ const webpackDevConfig = {
     mode: "development",
     devtool: "source-map",
     entry: {
-        index: `${APP_DIR}/index.js`
+        index: `${APP_DIR}/index.js`,
+        background: `${APP_DIR}/background.js`
     },
     output: {
         publicPath: PUBLIC_DIR,
@@ -91,6 +92,13 @@ const webpackDevConfig = {
             filename: "index.html",
             template: `${ROOT_DIR}/index.html`,
             chunks: ['index'],
+            inject: 'body'
+        }),
+        new HtmlWebpackPlugin({
+            publicPath: PUBLIC_DIR,
+            filename: "backGround.html",
+            template: `${ROOT_DIR}/backGround.html`,
+            chunks: ['background'],
             inject: 'body'
         })
     ],
