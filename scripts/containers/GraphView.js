@@ -63,7 +63,7 @@ class GraphView extends React.Component {
             }
             if (canvasDOMSumInstance && size > 0) {
                 canvasDOMContainer = document.createElement("div");
-                canvasDOMContainer["style"] = "position:absolute;width:100%;height:100%;top:0;left:0";
+                canvasDOMContainer["style"] = "position:absolute;width:100%;height:calc(100% - 38px);top:0;left:0";
                 for (let [mapKey, mapValue] of canvasDOMSumInstance.entries()) {
                     let node = mapValue;
                     node["top"] -= tableTop;
