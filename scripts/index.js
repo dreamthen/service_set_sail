@@ -6,7 +6,7 @@ import {LocaleProvider} from "antd";
 import zh_CN from "antd/lib/locale-provider/zh_CN";
 import store from "./configs/appStoreConfig";
 import routes from "./routes";
-import "./stylesheets";
+import "../stylesheets";
 
 
 render(<Provider store={store}>

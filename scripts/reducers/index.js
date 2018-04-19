@@ -1,6 +1,7 @@
 import {combineReducers} from "redux";
 import {prizeTableReducer} from "./prizeTableReducer";
 import {graphTableReducer} from "./graphTableReducer";
+import {backgroundReducer} from "./backgroundReducer";
 import actionTypeConfig from "../configs/actionTypeConfig"
 
 const defaultState = {
@@ -28,7 +29,8 @@ export function mainReducer(state = defaultState, action) {
 const reducers = combineReducers({
     mainReducer,
     prizeTableReducer,
-    graphTableReducer
+    graphTableReducer,
+    backgroundReducer
 });
 
 export default reducers;

@@ -1,0 +1,80 @@
+#service-backGround {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    *zoom: 1;
+}
+
+.background-main-view {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-main-view > .background-main-login,
+.background-main-view > .background-main-setUp {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f6f5f5;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-main-login > .background-main-login-title {
+    color: #355395;
+}
+
+.background-main-login > .background-main-login-username,
+.background-main-login > .background-main-login-password,
+.background-main-login > .background-main-login-button-container,
+.background-main-setUp > .background-main-setUp-button-container {
+    width: 310px;
+    margin: 6px 0 0 0;
+    text-align: center;
+}
+
+.background-main-login > .background-main-login-button-container,
+.background-main-setUp > .background-main-setUp-button-container {
+    margin: 12px 0 0 0;
+}
+
+.background-main-login-button-container .background-main-login-button,
+.background-main-setUp-button-container .background-main-setUp-button {
+    width: 200px;
+}
+
+.background-main-login > .background-main-login-username:after,
+.background-main-login > .background-main-login-password:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+.background-main-login .background-main-login-label {
+    width: 100px;
+    line-height: 40px;
+    float: left;
+    text-align: right;
+    margin-right: 6px;
+}
+
+.background-main-login .background-main-login-input {
+    display: table-cell;
+    *display: inline-block;
+    width: 2000px;
+    *width: auto;
+}
+
+.background-main-inputNumber-container .background-main-inputNumber {
+    margin: 0 4px 0 0;
+}
+
+.background-main-inputNumber-container .background-main-inputNumber:last-child {
+    margin: 0;
+}

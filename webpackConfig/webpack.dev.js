@@ -96,8 +96,8 @@ const webpackDevConfig = {
         }),
         new HtmlWebpackPlugin({
             publicPath: PUBLIC_DIR,
-            filename: "backGround.html",
-            template: `${ROOT_DIR}/backGround.html`,
+            filename: "background.html",
+            template: `${ROOT_DIR}/background.html`,
             chunks: ['background'],
             inject: 'body'
         })

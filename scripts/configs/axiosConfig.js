@@ -2,7 +2,10 @@ import axios from "axios";
 import codeConfig from "./codeConfig";
 import errorConfig from "./errorConfig";
 
-const axios_bonuses = axios.create({});
+const axios_bonuses = axios.create({
+    xsrfCookieName: "csrfToken",
+    xsrfHeaderName: "x-csrf-token"
+});
 
 axios_bonuses.interceptors.request.use(function resolve(request) {
     return request;
