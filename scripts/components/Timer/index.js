@@ -102,6 +102,12 @@ class Timer extends React.Component {
         if (surplus === undefined) {
             timeInterval.bind(this)();
         }
+        if (surplus <= 0) {
+            this.setState({
+                minute: '00',
+                second: '00'
+            });
+        }
         if (count && count !== nextProps.count) {
             if (this.timer) {
                 clearInterval(this.timer);
