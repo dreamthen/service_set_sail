@@ -10,6 +10,7 @@ export function getBonusesList(pageNum) {
             url: api.GET_BONUSES_LIST,
             method: "get",
             params: {
+                orders: "asc",
                 page_num: pageNum,
                 page_size: sizeConfig.PAGE_SIZE
             },

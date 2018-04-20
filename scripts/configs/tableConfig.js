@@ -65,7 +65,7 @@ export function graphTable() {
     let select_prize_number = ["1", "2", "3", "4", "5", "6"],
         select_prize_number_sum = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
         select_prize_number_span = [0, 1, 2, 3, 4, 5],
-        select_prize_number_sm_lge = ["sm", "lge"],
+        select_prize_number_sm_lge = ["lge", "sm"],
         select_prize_number_odd_even = ["odd", "even"];
     self.canvasDOMSumInstance = new Map();
     self.canvasDOMCutBayInstance = new Map();
@@ -88,7 +88,7 @@ export function graphTable() {
         dataIndex: "numberOne",
         width: 25,
         colSpan: 3,
-        className: "main-view-graph-table-rowOrHead",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight main-view-graph-table-rowOrHead-prizeNumber",
         render(text, record) {
             switch (record["type"]) {
                 case "black":
@@ -142,7 +142,7 @@ export function graphTable() {
         dataIndex: "numberThree",
         width: 25,
         colSpan: 0,
-        className: "main-view-graph-table-rowOrHead",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight",
         render(text, record) {
             switch (record["type"]) {
                 case "black":
@@ -165,14 +165,14 @@ export function graphTable() {
         }
     }, {
         title: "开奖号码分布",
-        className: "main-view-graph-table-rowOrHead",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight",
         children: select_prize_number.map((numberItem, numberIndex) => {
             return {
                 title: `0${numberItem}`,
                 key: `number${numberIndex}`,
                 dataIndex: "number",
                 width: "3%",
-                className: "main-view-graph-table-rowOrHead",
+                className: (numberIndex === select_prize_number.length - 1) ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     let num_arr = text.split(",");
                     for (let [key, value] of num_arr.entries()) {
@@ -195,7 +195,7 @@ export function graphTable() {
                                         style={{
                                             width: 19,
                                             height: 19,
-                                            lineHeight: 1.36,
+                                            lineHeight: 1.26,
                                             margin: "0 auto",
                                             backgroundColor: "#3182B3",
                                             borderRadius: "50%",
@@ -211,14 +211,14 @@ export function graphTable() {
         })
     }, {
         title: "和值",
-        className: "main-view-graph-table-rowOrHead",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight",
         children: select_prize_number_sum.map((sumItem, sumIndex) => {
             return {
                 title: `0${sumItem}`.slice(-2),
                 key: `sum${sumIndex}`,
                 dataIndex: "sum",
                 width: "2.5%",
-                className: sumItem > 10 ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd" : "main-view-graph-table-rowOrHead",
+                className: sumItem > 10 ? (sumIndex === select_prize_number_sum.length - 1) ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd main-view-graph-table-rowOrHead-borderRight" : "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === sumItem) {
                         switch (record["type"]) {

@@ -78,7 +78,7 @@ class GraphView extends React.Component {
                         height = Math.abs(canvasTop_next - canvasTop),
                         width = Math.abs(canvasLeft_next - canvasLeft),
                         top = height * index + height / 2 + table_head_height,
-                        left = canvasLeft_next > canvasLeft ? (canvasLeft + 18) : (canvasLeft_next + 18),
+                        left = canvasLeft_next > canvasLeft ? (canvasLeft + 16) : (canvasLeft_next + 16),
                         isTransform = canvasLeft_next < canvasLeft;
                     canvasDOMInstance_result = [...canvasDOMInstance_result, {
                         height,

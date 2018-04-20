@@ -9,8 +9,17 @@
 
 .main-view-graph-table .main-view-graph-table-rowOrHead {
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bolder;
+}
+
+.main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-borderLeft,
+.main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-borderRight {
+    border-right: 1px solid #B0B0B0 !important;
+}
+
+.ant-table-tbody .main-view-graph-table-rowOrHead-prizeNumber {
+    border-right: 1px solid #e8e8e8 !important;
 }
 
 .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHeadLeft {
@@ -50,5 +59,5 @@
 
 .main-view-graph-table .ant-table-thead > tr > th, .main-view-graph-table .ant-table-tbody > tr > td {
     word-break: normal;
-    padding: 16px 0;
+    padding: 4px 0;
 }
