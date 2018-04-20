@@ -73,7 +73,7 @@ export function graphTable() {
         title: "期号",
         key: "id",
         dataIndex: "no",
-        width: "8%",
+        width: "10%",
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             return (

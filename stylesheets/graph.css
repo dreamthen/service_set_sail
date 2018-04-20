@@ -17,8 +17,8 @@
     text-align: left;
 }
 
-.main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-overAdd {
-    background-color: #FAFAFA;
+.main-view-graph-table-row .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-overAdd {
+    background-color: #F2F2F2;
 }
 
 .main-view-graph-table > .main-view-graph-pagination {
