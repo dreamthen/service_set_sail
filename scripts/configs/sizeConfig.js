@@ -1,5 +1,5 @@
 const sizeConfig = {
-    PAGE_SIZE: 20,
+    PAGE_SIZE: 40,
     sm: "小",
     lge: "大",
     odd: "单",

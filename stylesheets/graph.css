@@ -9,6 +9,8 @@
 
 .main-view-graph-table .main-view-graph-table-rowOrHead {
     text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
 }
 
 .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHeadLeft {

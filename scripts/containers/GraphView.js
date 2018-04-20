@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {render} from "react-dom"
 import {connect} from "react-redux";
 import {Pagination, Table} from "antd";
 import sizeConfig from "../configs/sizeConfig";
@@ -79,7 +78,7 @@ class GraphView extends React.Component {
                         height = Math.abs(canvasTop_next - canvasTop),
                         width = Math.abs(canvasLeft_next - canvasLeft),
                         top = height * index + height / 2 + table_head_height,
-                        left = canvasLeft_next > canvasLeft ? (canvasLeft + 20) : (canvasLeft_next + 20),
+                        left = canvasLeft_next > canvasLeft ? (canvasLeft + 23) : (canvasLeft_next + 23),
                         isTransform = canvasLeft_next < canvasLeft;
                     canvasDOMInstance_result = [...canvasDOMInstance_result, {
                         height,

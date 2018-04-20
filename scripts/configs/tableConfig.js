@@ -73,7 +73,7 @@ export function graphTable() {
         title: "期号",
         key: "id",
         dataIndex: "no",
-        width: "6%",
+        width: "8%",
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             return (
@@ -165,12 +165,13 @@ export function graphTable() {
         }
     }, {
         title: "开奖号码分布",
+        className: "main-view-graph-table-rowOrHead",
         children: select_prize_number.map((numberItem, numberIndex) => {
             return {
                 title: `0${numberItem}`,
                 key: `number${numberIndex}`,
                 dataIndex: "number",
-                width: "3.5%",
+                width: "3%",
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     let num_arr = text.split(",");
@@ -210,6 +211,7 @@ export function graphTable() {
         })
     }, {
         title: "和值",
+        className: "main-view-graph-table-rowOrHead",
         children: select_prize_number_sum.map((sumItem, sumIndex) => {
             return {
                 title: `0${sumItem}`.slice(-2),
@@ -253,6 +255,7 @@ export function graphTable() {
         })
     }, {
         title: "大小",
+        className: "main-view-graph-table-rowOrHead",
         children: select_prize_number_sm_lge.map((smLgeItem, smLgeIndex) => {
             return {
                 title: sizeConfig[smLgeItem],
@@ -262,7 +265,9 @@ export function graphTable() {
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === smLgeItem) {
-                        return sizeConfig[text];
+                        return <div style={{color: "rgb(76,7,111)"}}>
+                            {sizeConfig[text]}
+                        </div>
                     } else {
                         return "";
                     }
@@ -271,6 +276,7 @@ export function graphTable() {
         })
     }, {
         title: "单双",
+        className: "main-view-graph-table-rowOrHead",
         children: select_prize_number_odd_even.map((oddEvenItem, oddEvenIndex) => {
             return {
                 title: sizeConfig[oddEvenItem],
@@ -280,7 +286,9 @@ export function graphTable() {
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === oddEvenItem) {
-                        return sizeConfig[text];
+                        return <div style={{color: "#355395"}}>
+                            {sizeConfig[text]}
+                        </div>
                     } else {
                         return "";
                     }
@@ -289,6 +297,7 @@ export function graphTable() {
         })
     }, {
         title: "跨度",
+        className: "main-view-graph-table-rowOrHead",
         children: select_prize_number_span.map((spanItem, spanIndex) => {
             return {
                 title: `${spanItem}`,
