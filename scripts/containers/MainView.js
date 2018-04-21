@@ -127,7 +127,7 @@ class MainView extends React.Component {
     }
 
     componentDidMount() {
-        let socket = io(window.location.host);
+        let socket = io("116.62.65.162:7001");
         socket.on("connect", () => {
             console.log("server connect~");
         });
