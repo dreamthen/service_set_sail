@@ -1,18 +1,16 @@
 import axios_bonuses from "../configs/axiosConfig";
 import api from "../configs/api";
-import sizeConfig from "../configs/sizeConfig";
 import actionTypeConfig from "../configs/actionTypeConfig";
 import errorConfig from "../configs/errorConfig";
+import sizeConfig from "../configs/sizeConfig";
 
-export function getBonusesList(pageNum) {
+export function getBonusesList() {
     return new Promise(function promise(resolve, reject) {
         axios_bonuses({
             url: api.GET_BONUSES_LIST,
             method: "get",
             params: {
-                orders: "asc",
-                page_num: pageNum,
-                page_size: sizeConfig.PAGE_SIZE
+                page_size: sizeConfig.BIG_PAGE_SIZE
             },
             headers: {},
             responseType: "json",
@@ -21,7 +19,19 @@ export function getBonusesList(pageNum) {
             let data = response["data"],
                 total = response["total"],
                 time = response["time"];
-            data && data.length > 0 && resolve({bonusesList: data, total, time});
+            let date = new Date().getDate(),
+                date_arr = [],
+                result_arr = [];
+            for (let [key, value] of data.entries()) {
+                if (date !== new Date(value["date"]).getDate() || (key === data.length - 1)) {
+                    date_arr.reverse();
+                    result_arr = [...result_arr, ...date_arr];
+                    date = new Date(value["date"]).getDate();
+                    date_arr = [];
+                }
+                date_arr = [...date_arr, value];
+            }
+            data && data.length > 0 && resolve({bonusesList: data, bonusesGraphList: result_arr, total, time});
         }, function error(err) {
             let data = err.data,
                 status = err.status;

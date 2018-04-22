@@ -1,8 +1,8 @@
 import actionTypeConfig from "../configs/actionTypeConfig";
 
 const defaultState = {
+    bonusesGraphList: [],
     bonusesList: [],
-    current: 1,
     total: 0,
     time: 0,
     count: ""

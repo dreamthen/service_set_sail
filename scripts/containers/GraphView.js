@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Pagination, Table} from "antd";
-import sizeConfig from "../configs/sizeConfig";
+import {Table} from "antd";
 import {
     getBonusesList,
     getBonusesListAction,
@@ -14,8 +13,8 @@ import {
 
 class GraphView extends React.Component {
     static propTypes = {
+        bonusesGraphList: PropTypes.array,
         bonusesList: PropTypes.array,
-        current: PropTypes.number,
         total: PropTypes.number,
         time: PropTypes.number,
         count: PropTypes.string,
@@ -132,7 +131,7 @@ class GraphView extends React.Component {
         const {
             getBonusesListHandler
         } = this.props;
-        getBonusesListHandler.bind(this)({current: 1});
+        getBonusesListHandler.bind(this)();
     }
 
     componentWillUnmount() {
@@ -142,26 +141,10 @@ class GraphView extends React.Component {
         resetBonusesHandler.bind(this)();
     }
 
-    /**
-     * 点击分页，重新渲染
-     * @param page
-     */
-    loadMore(page) {
-        const {
-            getBonusesListHandler
-        } = this.props;
-        getBonusesListHandler.bind(this)({current: page});
-    }
-
     render() {
         const {
-            bonusesList,
-            current,
-            total
+            bonusesGraphList
         } = this.props;
-        const {
-            loadMore
-        } = this;
         const columns = graphTable.bind(this)();
         return (
             <section ref={(ref) => {
@@ -169,21 +152,11 @@ class GraphView extends React.Component {
             }} className="main-view-graph-table">
                 <Table
                     columns={columns}
-                    dataSource={bonusesList}
+                    dataSource={bonusesGraphList}
                     pagination={false}
                     rowClassName="main-view-graph-table-row"
                     bordered={true}
                 />
-                <div className="main-view-graph-pagination">
-                    <Pagination
-                        current={current}
-                        showQuickJumper={true}
-                        pageSize={sizeConfig.PAGE_SIZE}
-                        showTotal={total => `共${total}条`}
-                        total={total}
-                        onChange={loadMore.bind(this)}
-                    />
-                </div>
             </section>
         )
     }
@@ -201,8 +174,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        async getBonusesListHandler(pageNum) {
-            let bonuses = await getBonusesList.bind(this)(pageNum["current"]);
+        async getBonusesListHandler() {
+            let bonuses = await getBonusesList.bind(this)();
             for (let [key, value] of bonuses["bonusesList"].entries()) {
                 let number = value["number"],
                     num_arr = number.split(",");
@@ -213,7 +186,6 @@ function mapDispatchToProps(dispatch, ownProps) {
                 }
             }
             dispatch(getBonusesListAction({
-                ...pageNum,
                 ...bonuses
             }));
         },
