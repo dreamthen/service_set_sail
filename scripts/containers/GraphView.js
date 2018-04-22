@@ -23,7 +23,9 @@ class GraphView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            tableHeight: window.innerHeight - 286
+        };
         this.canvasDOMSumInstance = new Map();
         this.canvasDOMCutBayInstance = new Map();
         this.canvasDOMSum = null;
@@ -44,10 +46,7 @@ class GraphView extends React.Component {
      */
     Stroke(domInstance, dom) {
         return new Promise(function promise(resolve, reject) {
-            let table = this.table,
-                table_head_height = table.querySelectorAll(".ant-table-thead")[0].clientHeight,
-                tableLeft = table.getBoundingClientRect().left,
-                tableTop = table.getBoundingClientRect().top,
+            let table = document.querySelectorAll(".ant-table-body")[0],
                 canvasDOMSumInstance = this[domInstance],
                 size = canvasDOMSumInstance.size,
                 canvasDOMInstance_arr = [],
@@ -64,8 +63,6 @@ class GraphView extends React.Component {
                 canvasDOMContainer["style"] = "position:absolute;width:100%;height:calc(100% - 38px);top:0;left:0";
                 for (let [mapKey, mapValue] of canvasDOMSumInstance.entries()) {
                     let node = mapValue;
-                    node["top"] -= tableTop;
-                    node["left"] -= tableLeft;
                     canvasDOMInstance_arr = [...canvasDOMInstance_arr, node];
                 }
                 while (index < canvasDOMInstance_arr.length - 1) {
@@ -76,8 +73,8 @@ class GraphView extends React.Component {
                         canvasType = canvasDOMInstance_arr[index]["type"],
                         height = Math.abs(canvasTop_next - canvasTop),
                         width = Math.abs(canvasLeft_next - canvasLeft),
-                        top = height * index + height / 2 + table_head_height,
-                        left = canvasLeft_next > canvasLeft ? (canvasLeft + 16) : (canvasLeft_next + 16),
+                        top = height * index + height / 2,
+                        left = canvasLeft_next > canvasLeft ? canvasLeft - 8 : canvasLeft_next - 8,
                         isTransform = canvasLeft_next < canvasLeft;
                     canvasDOMInstance_result = [...canvasDOMInstance_result, {
                         height,
@@ -94,6 +91,9 @@ class GraphView extends React.Component {
                     canvas_node["width"] = value["width"];
                     canvas_node["height"] = value["height"];
                     canvas_node["style"] = `position:absolute;top:${value["top"]}px;left:${value["left"]}px;`;
+                    if (key === canvasDOMInstance_result.length - 1) {
+                        canvas_node["className"] = "canvasDOM_end";
+                    }
                     let canvas_node_ctx = canvas_node.getContext("2d");
                     if (value["isTransform"]) {
                         canvas_node_ctx.moveTo(value["width"], 0);
@@ -121,7 +121,17 @@ class GraphView extends React.Component {
             Stroke
         } = this;
         Stroke.bind(this)("canvasDOMSumInstance", "canvasDOMSum").then(function resolve() {
-            Stroke.bind(this)("canvasDOMCutBayInstance", "canvasDOMCutBay");
+            Stroke.bind(this)("canvasDOMCutBayInstance", "canvasDOMCutBay").then(function resolve() {
+                let tableScroll = document.querySelectorAll(".ant-table-body")[0],
+                    table = tableScroll.querySelectorAll(".ant-table-tbody")[0],
+                    tableHeight = table.offsetHeight,
+                    tableScrollHeight = tableScroll.offsetHeight;
+                if (document.querySelectorAll(".canvasDOM_end")[1]) {
+                    tableScroll.scrollTo(0, tableHeight - tableScrollHeight);
+                }
+            }.bind(this), function reject() {
+
+            }.bind(this));
         }.bind(this), function reject() {
 
         }.bind(this));
@@ -145,17 +155,22 @@ class GraphView extends React.Component {
         const {
             bonusesGraphList
         } = this.props;
+        const {
+            tableHeight
+        } = this.state;
         const columns = graphTable.bind(this)();
         return (
             <section ref={(ref) => {
                 this.table = ref
             }} className="main-view-graph-table">
                 <Table
+                    className="graph-table"
                     columns={columns}
                     dataSource={bonusesGraphList}
                     pagination={false}
                     rowClassName="main-view-graph-table-row"
                     bordered={true}
+                    scroll={{y: tableHeight}}
                 />
             </section>
         )

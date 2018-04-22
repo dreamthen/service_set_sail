@@ -46,6 +46,7 @@ class MainView extends React.Component {
             //期数向右禁用
             rightDisabled: !id
         };
+        this.mainContainer = null;
     }
 
     //八分钟时间后，调用获取新的中奖数字接口
@@ -139,7 +140,6 @@ class MainView extends React.Component {
         });
     }
 
-
     render() {
         const {
             //期号
@@ -185,7 +185,9 @@ class MainView extends React.Component {
             newBonuses_odd_even = bonusesList[id]["odd_even"];
         }
         return (
-            <main className="main-container">
+            <main className="main-container" ref={(ref) => {
+                this.mainContainer = ref;
+            }}>
                 <header className="main-view-header">
                     <nav className="main-view-navigator">
                         <div className="main-view-nav-func main-view-nav-lastTenStage">

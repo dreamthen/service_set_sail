@@ -10,6 +10,7 @@ export function getBonusesList() {
             url: api.GET_BONUSES_LIST,
             method: "get",
             params: {
+                orders: "asc",
                 page_size: sizeConfig.BIG_PAGE_SIZE
             },
             headers: {},
@@ -18,20 +19,10 @@ export function getBonusesList() {
         }).then(function done(response) {
             let data = response["data"],
                 total = response["total"],
-                time = response["time"];
-            let date = new Date().getDate(),
-                date_arr = [],
-                result_arr = [];
-            for (let [key, value] of data.entries()) {
-                if (date !== new Date(value["date"]).getDate() || (key === data.length - 1)) {
-                    date_arr.reverse();
-                    result_arr = [...result_arr, ...date_arr];
-                    date = new Date(value["date"]).getDate();
-                    date_arr = [];
-                }
-                date_arr = [...date_arr, value];
-            }
-            data && data.length > 0 && resolve({bonusesList: data, bonusesGraphList: result_arr, total, time});
+                time = response["time"],
+                bonusesList = Object.assign([], data);
+            bonusesList.reverse();
+            data && data.length > 0 && resolve({bonusesList: bonusesList, bonusesGraphList: data, total, time});
         }, function error(err) {
             let data = err.data,
                 status = err.status;
