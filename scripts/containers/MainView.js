@@ -188,86 +188,88 @@ class MainView extends React.Component {
             <main className="main-container" ref={(ref) => {
                 this.mainContainer = ref;
             }}>
-                <header className="main-view-header">
-                    <nav className="main-view-navigator">
-                        <div className="main-view-nav-func main-view-nav-lastTenStage">
-                            <img src="/images/ruishi_logo.png" alt="中国福利彩票Logo"/>
-                            <div className="nav-lastTenStage">
-                                <div>
-                                    最新：<span style={{color: "#f00"}}>{newBonuses_id}</span>期
+                {
+                    (router["location"]["pathname"] === linkConfig[0]["to"]) && <header className="main-view-header">
+                        <nav className="main-view-navigator">
+                            <div className="main-view-nav-func main-view-nav-lastTenStage">
+                                <img src="/images/ruishi_logo.png" alt="中国福利彩票Logo"/>
+                                <div className="nav-lastTenStage">
+                                    <div>
+                                        最新：<span style={{color: "#f00"}}>{newBonuses_id}</span>期
+                                    </div>
+                                    <i className={leftDisabled ? `iconfontSail iconSail-left iconSail-left-disabled` : `iconfontSail iconSail-left`}
+                                       onClick={changeNewBonusesIdPlusOrMinus.bind(this, "id", id + 1)}
+                                    >
+
+                                    </i>
+                                    <i className={rightDisabled ? `iconfontSail iconSail-right iconSail-right-disabled` : `iconfontSail iconSail-right`}
+                                       onClick={changeNewBonusesIdPlusOrMinus.bind(this, "id", id - 1)}
+                                    >
+
+                                    </i>
+                                    <Select
+                                        className="main-view-select"
+                                        size="default"
+                                        style={{margin: "6px 0 0 0", width: 114}}
+                                        value={newBonuses_select_id}
+                                        onChange={changeNewBonusesId.bind(this, "id")}
+                                    >
+                                        {
+                                            bonusesList_last_ten_stage.map((bonusesItem, bonusesIndex) => {
+                                                return (
+                                                    <Option
+                                                        key={bonusesIndex}
+                                                        value={bonusesItem["id"]}
+                                                    >
+                                                        {bonusesItem["no"]}
+                                                    </Option>
+                                                )
+                                            })
+                                        }
+                                    </Select>
                                 </div>
-                                <i className={leftDisabled ? `iconfontSail iconSail-left iconSail-left-disabled` : `iconfontSail iconSail-left`}
-                                   onClick={changeNewBonusesIdPlusOrMinus.bind(this, "id", id + 1)}
-                                >
-
-                                </i>
-                                <i className={rightDisabled ? `iconfontSail iconSail-right iconSail-right-disabled` : `iconfontSail iconSail-right`}
-                                   onClick={changeNewBonusesIdPlusOrMinus.bind(this, "id", id - 1)}
-                                >
-
-                                </i>
-                                <Select
-                                    className="main-view-select"
-                                    size="default"
-                                    style={{margin: "6px 0 0 0", width: 114}}
-                                    value={newBonuses_select_id}
-                                    onChange={changeNewBonusesId.bind(this, "id")}
-                                >
-                                    {
-                                        bonusesList_last_ten_stage.map((bonusesItem, bonusesIndex) => {
-                                            return (
-                                                <Option
-                                                    key={bonusesIndex}
-                                                    value={bonusesItem["id"]}
-                                                >
-                                                    {bonusesItem["no"]}
-                                                </Option>
-                                            )
-                                        })
-                                    }
-                                </Select>
+                                <img src="/images/ruishi.png" alt="中国福利彩票快三"/>
                             </div>
-                            <img src="/images/ruishi.png" alt="中国福利彩票快三"/>
-                        </div>
-                        <div className="main-view-nav-func main-view-nav-awardResults">
-                            {
-                                newBonuses_arr && newBonuses_arr.length > 0 && newBonuses_arr.map((bonusesItem, bonusesIndex) => {
-                                    return <span key={bonusesIndex}>
-                                        <span
-                                            className="main-view-nav-award">
-                                            {bonusesItem}
+                            <div className="main-view-nav-func main-view-nav-awardResults">
+                                {
+                                    newBonuses_arr && newBonuses_arr.length > 0 && newBonuses_arr.map((bonusesItem, bonusesIndex) => {
+                                        return <span key={bonusesIndex}>
+                                            <span
+                                                className="main-view-nav-award">
+                                                {bonusesItem}
+                                            </span>
+                                            {(bonusesIndex !== newBonuses_arr.length - 1) ? "+" : ""}
                                         </span>
-                                        {(bonusesIndex !== newBonuses_arr.length - 1) ? "+" : ""}
-                                    </span>
-                                })
-                            }
-                            和值
-                            <span className="main-view-nav-award main-view-nav-award-sum">
-                                {newBonuses_sum}
-                            </span>
-                            <hr className="main-view-nav-award-hr"/>
-                            <span className="main-view-nav-award main-view-nav-transform">
-                                {sizeConfig[newBonuses_sm_lge]}
-                            </span>
-                            <span className="main-view-nav-award main-view-nav-transform">
-                                {sizeConfig[newBonuses_odd_even]}
-                            </span>
-                        </div>
-                        <div className="main-view-nav-func main-view-nav-timer">
-                            下一期：<Timer
-                            wrapClassName="main-view-nav-timer-container"
-                            type="m"
-                            start="12:00:00"
-                            end="00:30:00"
-                            surplus={time * 1000}
-                            duration={10}
-                            done={getNewBonusesHandler.bind(this)}
-                            count={count ? count : graph_count}
-                            changeRefresh={getBonusesListHandler.bind(this)}
-                        />
-                        </div>
-                    </nav>
-                </header>
+                                    })
+                                }
+                                和值
+                                <span className="main-view-nav-award main-view-nav-award-sum">
+                                    {newBonuses_sum}
+                                </span>
+                                <hr className="main-view-nav-award-hr"/>
+                                <span className="main-view-nav-award main-view-nav-transform">
+                                    {sizeConfig[newBonuses_sm_lge]}
+                                </span>
+                                <span className="main-view-nav-award main-view-nav-transform">
+                                    {sizeConfig[newBonuses_odd_even]}
+                                </span>
+                            </div>
+                            <div className="main-view-nav-func main-view-nav-timer">
+                                下一期：<Timer
+                                wrapClassName="main-view-nav-timer-container"
+                                type="m"
+                                start="12:00:00"
+                                end="00:30:00"
+                                surplus={time * 1000}
+                                duration={10}
+                                done={getNewBonusesHandler.bind(this)}
+                                count={count ? count : graph_count}
+                                changeRefresh={getBonusesListHandler.bind(this)}
+                            />
+                            </div>
+                        </nav>
+                    </header>
+                }
                 <section className="main-view-section">
                     <div className="main-view-link-container">
                         {

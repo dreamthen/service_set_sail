@@ -24,7 +24,7 @@ class GraphView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHeight: window.innerHeight - 286
+            tableHeight: window.innerHeight - 160
         };
         this.canvasDOMSumInstance = new Map();
         this.canvasDOMCutBayInstance = new Map();
