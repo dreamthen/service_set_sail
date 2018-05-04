@@ -7,6 +7,10 @@
     text-align: center;
 }
 
+.main-view-graph-table .main-view-graph-table-row-borderTop {
+    border-top: 1px solid #B0B0B0;
+}
+
 .main-view-graph-table .main-view-graph-table-rowOrHead {
     text-align: center;
     font-size: 16px;
@@ -59,5 +63,5 @@
 
 .main-view-graph-table .ant-table-thead > tr > th, .main-view-graph-table .ant-table-tbody > tr > td {
     word-break: normal;
-    padding: 2px 0;
+    padding: 0;
 }

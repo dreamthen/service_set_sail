@@ -261,7 +261,7 @@ class MainView extends React.Component {
                                 start="12:00:00"
                                 end="00:30:00"
                                 surplus={time * 1000}
-                                duration={10}
+                                duration={8}
                                 done={getNewBonusesHandler.bind(this)}
                                 count={count ? count : graph_count}
                                 changeRefresh={getBonusesListHandler.bind(this)}
