@@ -128,7 +128,6 @@ class GraphView extends React.Component {
                     tableScrollHeight = tableScroll.offsetHeight;
                 if (document.querySelectorAll(".canvasDOM_end")[1]) {
                     tableScroll.scrollTop = tableHeight - tableScrollHeight;
-                    // tableScroll.scrollTo(0, tableHeight - tableScrollHeight);
                 }
             }.bind(this), function reject() {
 

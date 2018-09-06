@@ -128,7 +128,7 @@ class MainView extends React.Component {
     }
 
     componentDidMount() {
-        let socket = io("116.62.65.162:7001");
+        let socket = io("47.99.101.140:7001");
         socket.on("connect", () => {
             console.log("server connect~");
         });
@@ -258,10 +258,10 @@ class MainView extends React.Component {
                                 下一期：<Timer
                                 wrapClassName="main-view-nav-timer-container"
                                 type="m"
-                                start="12:00:00"
-                                end="00:30:00"
+                                start="05:58:00"
+                                end="02:15:10"
                                 surplus={time * 1000}
-                                duration={8}
+                                duration={8.17}
                                 done={getNewBonusesHandler.bind(this)}
                                 count={count ? count : graph_count}
                                 changeRefresh={getBonusesListHandler.bind(this)}

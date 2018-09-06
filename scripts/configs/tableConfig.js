@@ -77,13 +77,18 @@ export function graphTable() {
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             return (
-                <div style={text.slice(-3) === "001" ? {
-                    borderTop: "1px solid #B0B0B0",
-                    padding: "2px 0"
-                } : {
-                    borderTop: "none",
-                    padding: "2px 0"
-                }}>
+                <div title={text}
+                     style={Object.assign({
+                         overflow: "hidden",
+                         whiteSpace: "nowrap",
+                         textOverflow: "ellipsis"
+                     }, text.slice(-3) === "127" ? {
+                         borderBottom: "2px solid #B0B0B0",
+                         padding: "2px 0"
+                     } : {
+                         borderTop: "none",
+                         padding: "2px 0"
+                     })}>
                     {text}
                 </div>
             )
@@ -98,8 +103,8 @@ export function graphTable() {
         render(text, record) {
             switch (record["type"]) {
                 case "black":
-                    return <div style={record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -108,8 +113,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 case "red":
-                    return <div style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -118,8 +123,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 case "blue":
-                    return <div style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -128,8 +133,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 default:
-                    return <div style={record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -149,8 +154,8 @@ export function graphTable() {
         render(text, record) {
             switch (record["type"]) {
                 case "black":
-                    return <div style={record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -159,8 +164,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 case "red":
-                    return <div style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -169,8 +174,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 case "blue":
-                    return <div style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -179,8 +184,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 default:
-                    return <div style={record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -200,8 +205,8 @@ export function graphTable() {
         render(text, record) {
             switch (record["type"]) {
                 case "black":
-                    return <div style={record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -210,8 +215,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 case "red":
-                    return <div style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -220,8 +225,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 case "blue":
-                    return <div style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -230,8 +235,8 @@ export function graphTable() {
                         {text}
                     </div>;
                 default:
-                    return <div style={record["no"].slice(-3) === "001" ? {
-                        borderTop: "1px solid #B0B0B0",
+                    return <div style={record["no"].slice(-3) === "127" ? {
+                        borderBottom: "2px solid #B0B0B0",
                         padding: "2px 0"
                     } : {
                         borderTop: "none",
@@ -257,8 +262,8 @@ export function graphTable() {
                         if (value === numberItem) {
                             switch (record["type"]) {
                                 case "black":
-                                    return <div style={record["no"].slice(-3) === "001" ? {
-                                        borderTop: "1px solid #B0B0B0",
+                                    return <div style={record["no"].slice(-3) === "127" ? {
+                                        borderBottom: "2px solid #B0B0B0",
                                         padding: "2px 0"
                                     } : {
                                         borderTop: "none",
@@ -268,8 +273,8 @@ export function graphTable() {
                                     </div>;
                                 case "red":
                                     return <div
-                                        style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "001" ? {
-                                            borderTop: "1px solid #B0B0B0",
+                                        style={Object.assign({color: "#f00"}, record["no"].slice(-3) === "127" ? {
+                                            borderBottom: "2px solid #B0B0B0",
                                             padding: "2px 0"
                                         } : {
                                             borderTop: "none",
@@ -279,8 +284,8 @@ export function graphTable() {
                                     </div>;
                                 case "blue":
                                     return <div
-                                        style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "001" ? {
-                                            borderTop: "1px solid #B0B0B0",
+                                        style={Object.assign({color: "#00f"}, record["no"].slice(-3) === "127" ? {
+                                            borderBottom: "2px solid #B0B0B0",
                                             padding: "2px 0"
                                         } : {
                                             borderTop: "none",
@@ -289,29 +294,35 @@ export function graphTable() {
                                         {value}
                                     </div>;
                                 default:
-                                    return <div
+                                    return <section
                                         style={Object.assign({
-                                            width: 19,
-                                            height: 19,
-                                            lineHeight: 1.26,
-                                            margin: "0 auto",
-                                            backgroundColor: "#3182B3",
-                                            borderRadius: "50%",
-                                            color: "#fff"
-                                        }, record["no"].slice(-3) === "001" ? {
-                                            borderTop: "1px solid #B0B0B0",
+                                            height: 34,
+                                            lineHeight: 1,
+                                        }, record["no"].slice(-3) === "127" ? {
+                                            borderBottom: "2px solid #B0B0B0",
                                         } : {
                                             borderTop: "none",
                                         })}>
-                                        {value}
-                                    </div>;
+                                        <div style={{
+                                            position: "relative",
+                                            width: 19,
+                                            height: 19,
+                                            margin: "0 auto",
+                                            top: 8,
+                                            backgroundColor: "#3182B3",
+                                            borderRadius: "50%",
+                                            color: "#fff"
+                                        }}>
+                                            {value}
+                                        </div>
+                                    </section>;
                             }
                         } else {
                             return <div style={Object.assign({
-                                height: 30,
+                                height: 34,
                                 lineHeight: 1.26,
-                            }, record["no"].slice(-3) === "001" ? {
-                                borderTop: "1px solid #B0B0B0",
+                            }, record["no"].slice(-3) === "127" ? {
+                                borderBottom: "2px solid #B0B0B0",
                             } : {
                                 borderTop: "none",
                             })}>
@@ -336,8 +347,8 @@ export function graphTable() {
                     if (text === sumItem) {
                         switch (record["type"]) {
                             case "black":
-                                return <div style={Object.assign({height: 30}, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                return <div style={Object.assign({height: 34}, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                     padding: "2px 0"
                                 } : {
                                     borderTop: "none",
@@ -350,9 +361,9 @@ export function graphTable() {
                             case "red":
                                 return <div style={Object.assign({
                                     color: "#f00",
-                                    height: 30
-                                }, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                    height: 34
+                                }, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                     padding: "2px 0"
                                 } : {
                                     borderTop: "none",
@@ -365,9 +376,9 @@ export function graphTable() {
                             case "blue":
                                 return <div style={Object.assign({
                                     color: "#00f",
-                                    height: 30
-                                }, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                    height: 34
+                                }, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                     padding: "2px 0"
                                 } : {
                                     borderTop: "none",
@@ -378,9 +389,9 @@ export function graphTable() {
                                     {text}
                                 </div>;
                             default:
-                                return <div style={Object.assign({height: 30},
-                                    record["no"].slice(-3) === "001" ? {
-                                        borderTop: "1px solid #B0B0B0",
+                                return <div style={Object.assign({height: 34},
+                                    record["no"].slice(-3) === "127" ? {
+                                        borderBottom: "2px solid #B0B0B0",
                                         padding: "2px 0"
                                     } : {
                                         borderTop: "none",
@@ -393,10 +404,10 @@ export function graphTable() {
                         }
                     } else {
                         return <div style={Object.assign({
-                            height: 30,
+                            height: 34,
                             lineHeight: 1.26,
-                        }, record["no"].slice(-3) === "001" ? {
-                            borderTop: "1px solid #B0B0B0",
+                        }, record["no"].slice(-3) === "127" ? {
+                            borderBottom: "2px solid #B0B0B0",
                         } : {
                             borderTop: "none",
                         })}>
@@ -420,9 +431,9 @@ export function graphTable() {
                     if (text === smLgeItem) {
                         return <div style={Object.assign({
                             color: "rgb(76,7,111)",
-                            height: 30
-                        }, record["no"].slice(-3) === "001" ? {
-                            borderTop: "1px solid #B0B0B0",
+                            height: 34
+                        }, record["no"].slice(-3) === "127" ? {
+                            borderBottom: "2px solid #B0B0B0",
                         } : {
                             borderTop: "none",
                         })}>
@@ -430,10 +441,10 @@ export function graphTable() {
                         </div>
                     } else {
                         return <div style={Object.assign({
-                            height: 30,
+                            height: 34,
                             lineHeight: 1.26,
-                        }, record["no"].slice(-3) === "001" ? {
-                            borderTop: "1px solid #B0B0B0",
+                        }, record["no"].slice(-3) === "127" ? {
+                            borderBottom: "2px solid #B0B0B0",
                         } : {
                             borderTop: "none",
                         })}>
@@ -456,8 +467,8 @@ export function graphTable() {
                 render(text, record) {
                     if (text === oddEvenItem) {
                         return <div
-                            style={Object.assign({color: "#355395", height: 30}, record["no"].slice(-3) === "001" ? {
-                                borderTop: "1px solid #B0B0B0",
+                            style={Object.assign({color: "#355395", height: 34}, record["no"].slice(-3) === "127" ? {
+                                borderBottom: "2px solid #B0B0B0",
                             } : {
                                 borderTop: "none",
                             })}>
@@ -465,10 +476,10 @@ export function graphTable() {
                         </div>
                     } else {
                         return <div style={Object.assign({
-                            height: 30,
+                            height: 34,
                             lineHeight: 1.26,
-                        }, record["no"].slice(-3) === "001" ? {
-                            borderTop: "1px solid #B0B0B0",
+                        }, record["no"].slice(-3) === "127" ? {
+                            borderBottom: "2px solid #B0B0B0",
                         } : {
                             borderTop: "none",
                         })}>
@@ -492,8 +503,8 @@ export function graphTable() {
                     if (text === spanItem) {
                         switch (record["type"]) {
                             case "black":
-                                return <div style={Object.assign({height: 30}, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                return <div style={Object.assign({height: 34}, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                 } : {
                                     borderTop: "none",
                                 })} ref={(ref) => {
@@ -504,9 +515,9 @@ export function graphTable() {
                             case "red":
                                 return <div style={Object.assign({
                                     color: "#f00",
-                                    height: 30
-                                }, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                    height: 34
+                                }, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                 } : {
                                     borderTop: "none",
                                 })} ref={(ref) => {
@@ -517,9 +528,9 @@ export function graphTable() {
                             case "blue":
                                 return <div style={Object.assign({
                                     color: "#00f",
-                                    height: 30
-                                }, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                    height: 34
+                                }, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                 } : {
                                     borderTop: "none",
                                 })} ref={(ref) => {
@@ -528,8 +539,8 @@ export function graphTable() {
                                     {text}
                                 </div>;
                             default:
-                                return <div style={Object.assign({height: 30}, record["no"].slice(-3) === "001" ? {
-                                    borderTop: "1px solid #B0B0B0",
+                                return <div style={Object.assign({height: 34}, record["no"].slice(-3) === "127" ? {
+                                    borderBottom: "2px solid #B0B0B0",
                                 } : {
                                     borderTop: "none",
                                 })} ref={(ref) => {
@@ -540,10 +551,10 @@ export function graphTable() {
                         }
                     } else {
                         return <div style={Object.assign({
-                            height: 30,
+                            height: 34,
                             lineHeight: 1.26,
-                        }, record["no"].slice(-3) === "001" ? {
-                            borderTop: "1px solid #B0B0B0",
+                        }, record["no"].slice(-3) === "127" ? {
+                            borderBottom: "2px solid #B0B0B0",
                         } : {
                             borderTop: "none",
                         })}>

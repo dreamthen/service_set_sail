@@ -104,8 +104,8 @@ class Timer extends React.Component {
         }
         if (surplus <= 0) {
             this.setState({
-                minute: '00',
-                second: '00'
+                minute: '08',
+                second: '10'
             });
         }
         if (count && count !== nextProps.count) {
@@ -175,7 +175,7 @@ class Timer extends React.Component {
         } else {
             this.setState({
                 minute: '08',
-                second: '00'
+                second: '10'
             });
         }
     }

@@ -107,7 +107,7 @@ const webpackDevConfig = {
         port: port,
         proxy: {
             "/keryi/": {
-                target: "http://116.62.65.162:7001/",
+                target: "http://47.99.101.140:7001/",
                 secure: true,
                 pathRewrite: {"/keryi/": ""}
             }

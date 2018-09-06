@@ -13,8 +13,13 @@
 
 .main-view-graph-table .main-view-graph-table-rowOrHead {
     text-align: center;
-    font-size: 16px;
-    font-weight: bolder;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.main-view-graph-table .main-view-graph-table-rowOrHead > div,
+.main-view-graph-table .main-view-graph-table-rowOrHead > section {
+    box-sizing: border-box;
 }
 
 .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-borderLeft,
