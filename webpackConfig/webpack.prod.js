@@ -55,10 +55,47 @@ const webpackProdConfig = {
             })
         ],
         splitChunks: {
-            chunks: "all",
-            minChunks: 1,
-            minSize: 20000,
-            name: true
+            cacheGroups: {
+                react: {
+                    test: /[\\/]node_modules[\\/]react/,
+                    priority: -10,
+                    chunks: 'initial',
+                    name: 'react',
+                    minChunks: 1,
+                    minSize: 20000
+                },
+                redux: {
+                    test: /[\\/]node_modules[\\/]redux/,
+                    priority: -10,
+                    chunks: 'initial',
+                    name: 'redux',
+                    minChunks: 1,
+                    minSize: 20000
+                },
+                'react-redux': {
+                    test: /[\\/]node_modules[\\/]react-redux/,
+                    priority: -10,
+                    chunks: 'initial',
+                    name: 'react-redux',
+                    minChunks: 1,
+                    minSize: 20000
+                },
+                common: {
+                    chunks: 'initial',
+                    priority: -10,
+                    minChunks: 2,
+                    name: 'common',
+                    minSize: 20000
+                },
+                antd: {
+                    test: /[\\/]node_modules[\\/]antd/,
+                    priority: -20,
+                    chunks: 'initial',
+                    name: 'antd',
+                    minChunks: 1,
+                    minSize: 20000
+                }
+            }
         }
     },
     resolve: {
@@ -118,15 +155,19 @@ const webpackProdConfig = {
             publicPath: PUBLIC_DIR,
             filename: "index.html",
             template: `${ROOT_DIR}/index.html`,
-            chunks: ['index'],
-            inject: "body"
+            chunks: ['index', 'react', 'redux', 'react-redux', 'antd', 'common'],
+            vendor: './dll/vendor_bundle.js',
+            inject: 'body',
+            hash: true
         }),
         new HtmlWebpackPlugin({
             publicPath: PUBLIC_DIR,
             filename: "background.html",
             template: `${ROOT_DIR}/background.html`,
-            chunks: ['background'],
-            inject: "body"
+            chunks: ['background', 'react', 'redux', 'react-redux', 'antd', 'common'],
+            vendor: './dll/vendor_bundle.js',
+            inject: 'body',
+            hash: true
         })
     ]
 };
