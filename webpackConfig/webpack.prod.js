@@ -53,7 +53,13 @@ const webpackProdConfig = {
                     }
                 }
             })
-        ]
+        ],
+        splitChunks: {
+            chunks: "all",
+            minChunks: 1,
+            minSize: 20000,
+            name: true
+        }
     },
     resolve: {
         modules: [
