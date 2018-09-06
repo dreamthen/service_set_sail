@@ -27,7 +27,7 @@ fs.copySync(IMAGE_DIR, `${BUILD_DIR}/images`, {
 });
 
 const webpackProdConfig = {
-    devtool: "source-map",
+    devtool: "cheap-module-source-map",
     mode: "production",
     entry: {
         index: `${APP_DIR}/index.js`,
@@ -49,7 +49,7 @@ const webpackProdConfig = {
                         warnings: true
                     },
                     output: {
-                        comments: true
+                        comments: false
                     }
                 }
             })
