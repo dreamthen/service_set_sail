@@ -114,7 +114,7 @@ class BackgroundView extends React.Component {
                                                         className="background-main-inputNumber"
                                                         maxLength={1}
                                                         max={6}
-                                                        min={0}
+                                                        min={1}
                                                         value={this.state[`recommend_${commendItem}`]}
                                                         onChange={onInputNumberChangeHandler.bind(this, `recommend_${commendItem}`)}/>
                                 })
