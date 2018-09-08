@@ -73,7 +73,7 @@ export function graphTable() {
         title: "期号",
         key: "id",
         dataIndex: "no",
-        width: "6%",
+        width: "5%",
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             return (
@@ -95,9 +95,8 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberOne",
         dataIndex: "numberOne",
-        width: 28,
-        colSpan: 3,
-        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight main-view-graph-table-rowOrHead-prizeNumber",
+        width: "2.3%",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-prizeNumber",
         render(text, record) {
             switch (record["type"]) {
                 case "black":
@@ -146,8 +145,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberTwo",
         dataIndex: "numberTwo",
-        width: 28,
-        colSpan: 0,
+        width: "2.3%",
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             switch (record["type"]) {
@@ -197,8 +195,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberThree",
         dataIndex: "numberThree",
-        width: 28,
-        colSpan: 0,
+        width: "2.3%",
         className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight",
         render(text, record) {
             switch (record["type"]) {
@@ -339,7 +336,7 @@ export function graphTable() {
                 title: `0${sumItem}`.slice(-2),
                 key: `sum${sumIndex}`,
                 dataIndex: "sum",
-                width: "2.5%",
+                width: "2.8%",
                 className: sumItem > 10 ? (sumIndex === select_prize_number_sum.length - 1) ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd main-view-graph-table-rowOrHead-borderRight" : "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === sumItem) {
