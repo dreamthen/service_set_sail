@@ -73,14 +73,12 @@ export function graphTable() {
         title: "期号",
         key: "id",
         dataIndex: "no",
-        width: "10%",
+        width: "6%",
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             return (
                 <div title={text}
                      style={Object.assign({
-                         overflow: "hidden",
-                         whiteSpace: "nowrap",
                          textOverflow: "ellipsis"
                      }, text.slice(-3) === "127" ? {
                          borderBottom: "2px solid #B0B0B0",
@@ -97,7 +95,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberOne",
         dataIndex: "numberOne",
-        width: 25,
+        width: 28,
         colSpan: 3,
         className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight main-view-graph-table-rowOrHead-prizeNumber",
         render(text, record) {
@@ -148,7 +146,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberTwo",
         dataIndex: "numberTwo",
-        width: 25,
+        width: 28,
         colSpan: 0,
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
@@ -199,7 +197,7 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberThree",
         dataIndex: "numberThree",
-        width: 25,
+        width: 28,
         colSpan: 0,
         className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight",
         render(text, record) {
