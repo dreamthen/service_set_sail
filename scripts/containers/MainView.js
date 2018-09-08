@@ -271,29 +271,33 @@ class MainView extends React.Component {
                     </header>
                 }
                 <section className="main-view-section">
-                    <div className="main-view-link-container">
-                        {
-                            linkConfig.map((linkItem, linkIndex) => {
-                                return <Link
-                                    to={linkItem["to"]}
-                                    className="main-view-link"
-                                    activeClassName="main-view-link-active"
-                                    key={linkIndex}
-                                    onClick={(e) => {
-                                        linkItem["active"] = true;
-                                    }}
-                                >
-                                    {linkItem["content"]}
-                                    {
-                                        linkItem["to"] === router["location"]["pathname"] &&
-                                        <div className="main-view-link-active-icon" style={{borderTopColor: "#355395"}}>
+                    {
+                        (router["location"]["pathname"] === linkConfig[0]["to"]) &&
+                        <div className="main-view-link-container">
+                            {
+                                linkConfig.map((linkItem, linkIndex) => {
+                                    return <Link
+                                        to={linkItem["to"]}
+                                        className="main-view-link"
+                                        activeClassName="main-view-link-active"
+                                        key={linkIndex}
+                                        onClick={(e) => {
+                                            linkItem["active"] = true;
+                                        }}
+                                    >
+                                        {linkItem["content"]}
+                                        {
+                                            linkItem["to"] === router["location"]["pathname"] &&
+                                            <div className="main-view-link-active-icon"
+                                                 style={{borderTopColor: "#355395"}}>
 
-                                        </div>
-                                    }
-                                </Link>
-                            })
-                        }
-                    </div>
+                                            </div>
+                                        }
+                                    </Link>
+                                })
+                            }
+                        </div>
+                    }
                     <div className="main-view-section-branch">
                         {children}
                     </div>
