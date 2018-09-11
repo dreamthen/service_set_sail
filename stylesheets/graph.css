@@ -17,6 +17,12 @@
     font-weight: 900;
 }
 
+.main-view-graph-table td.main-view-graph-table-rowOrHead > div,
+.main-view-graph-table td.main-view-graph-table-rowOrHead > section {
+    transform-origin: center;
+    transform: scale(1.5);
+}
+
 .main-view-graph-table .main-view-graph-table-rowOrHead > div,
 .main-view-graph-table .main-view-graph-table-rowOrHead > section {
     box-sizing: border-box;
