@@ -5,6 +5,8 @@
 
 .main-view-prize-table .main-view-prize-table-rowOrHead {
     text-align: center;
+    font-size: 22px;
+    font-weight: 900;
 }
 
 .main-view-prize-table-rowOrHead.main-view-prize-table-rowOrHeadLeft {

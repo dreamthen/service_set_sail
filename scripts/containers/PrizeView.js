@@ -25,7 +25,7 @@ class PrizeView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHeight: window.innerHeight - 310
+            tableHeight: window.innerHeight - 480
         };
     }
 

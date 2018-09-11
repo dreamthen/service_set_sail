@@ -230,6 +230,19 @@ class MainView extends React.Component {
                                 </div>
                                 <img src="/images/ruishi.png" alt="中国福利彩票快三"/>
                             </div>
+                            <div className="main-view-nav-func main-view-nav-timer">
+                                下一期：<Timer
+                                wrapClassName="main-view-nav-timer-container"
+                                type="m"
+                                start="05:58:00"
+                                end="02:15:10"
+                                surplus={time * 1000}
+                                duration={8.17}
+                                done={getNewBonusesHandler.bind(this)}
+                                count={count ? count : graph_count}
+                                changeRefresh={getBonusesListHandler.bind(this)}
+                            />
+                            </div>
                             <div className="main-view-nav-func main-view-nav-awardResults">
                                 {
                                     newBonuses_arr && newBonuses_arr.length > 0 && newBonuses_arr.map((bonusesItem, bonusesIndex) => {
@@ -253,19 +266,6 @@ class MainView extends React.Component {
                                 <span className="main-view-nav-award main-view-nav-transform">
                                     {sizeConfig[newBonuses_odd_even]}
                                 </span>
-                            </div>
-                            <div className="main-view-nav-func main-view-nav-timer">
-                                下一期：<Timer
-                                wrapClassName="main-view-nav-timer-container"
-                                type="m"
-                                start="05:58:00"
-                                end="02:15:10"
-                                surplus={time * 1000}
-                                duration={8.17}
-                                done={getNewBonusesHandler.bind(this)}
-                                count={count ? count : graph_count}
-                                changeRefresh={getBonusesListHandler.bind(this)}
-                            />
                             </div>
                         </nav>
                     </header>
