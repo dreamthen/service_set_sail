@@ -235,7 +235,7 @@ class MainView extends React.Component {
                                 wrapClassName="main-view-nav-timer-container"
                                 type="m"
                                 start="05:58:00"
-                                end="02:54:30"
+                                end="02:45:30"
                                 surplus={time * 1000}
                                 duration={8.17}
                                 done={getNewBonusesHandler.bind(this)}
