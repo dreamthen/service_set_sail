@@ -76,3 +76,25 @@
     word-break: normal;
     padding: 0;
 }
+
+.main-view-graph-table > .main-view-graph-footer {
+    background-color: #741b7a;
+    color: #caa565;
+    padding: 6px;
+}
+
+.main-view-graph-table > .main-view-graph-footer:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+
+.main-view-graph-table > .main-view-graph-footer > .main-view-graph-footer-main {
+    float: left;
+}
+
+.main-view-graph-table > .main-view-graph-footer > .main-view-graph-footer-graph {
+    float: right;
+}

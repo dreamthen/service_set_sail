@@ -18,7 +18,7 @@ html, body {
 
 .main-container > .main-view-section {
     width: calc(100% - 12px);
-    margin: 20px 6px 0 6px;
+    margin: 0 6px 0 6px;
     overflow: hidden;
     background-color: #f6f5f5;
     border: 1px solid #dedede;
@@ -26,6 +26,7 @@ html, body {
 
 .main-view-header > .main-view-navigator {
     padding: 20px 15px;
+    margin-bottom: 20px;
     background-color: #f6f5f5;
     border: 1px solid #dedede;
 }

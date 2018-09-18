@@ -24,7 +24,7 @@ class GraphView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHeight: window.innerHeight - 160
+            tableHeight: window.innerHeight - 170
         };
         this.canvasDOMSumInstance = new Map();
         this.canvasDOMCutBayInstance = new Map();
@@ -172,6 +172,14 @@ class GraphView extends React.Component {
                     bordered={true}
                     scroll={{y: tableHeight}}
                 />
+                <footer className="main-view-graph-footer">
+                    <main className="main-view-graph-footer-main">
+                        陕西快三
+                    </main>
+                    <aside className="main-view-graph-footer-graph">
+                        http://sxk3.1jtec.com/graph
+                    </aside>
+                </footer>
             </section>
         )
     }
