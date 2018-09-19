@@ -74,7 +74,7 @@ export function graphTable() {
         key: "id",
         dataIndex: "no",
         width: "5%",
-        className: "main-view-graph-table-rowOrHead",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-dayNumber",
         render(text, record) {
             return (
                 <div title={text}
@@ -95,7 +95,8 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberOne",
         dataIndex: "numberOne",
-        width: "2.3%",
+        width: 25,
+        colSpan: 3,
         className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-prizeNumber",
         render(text, record) {
             switch (record["type"]) {
@@ -145,7 +146,8 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberTwo",
         dataIndex: "numberTwo",
-        width: "2.3%",
+        width: 25,
+        colSpan: 0,
         className: "main-view-graph-table-rowOrHead",
         render(text, record) {
             switch (record["type"]) {
@@ -195,7 +197,8 @@ export function graphTable() {
         title: "开奖号码",
         key: "numberThree",
         dataIndex: "numberThree",
-        width: "2.3%",
+        width: 25,
+        colSpan: 0,
         className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight",
         render(text, record) {
             switch (record["type"]) {

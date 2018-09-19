@@ -17,6 +17,11 @@
     font-weight: 900;
 }
 
+.main-view-graph-table .main-view-graph-table-rowOrHead-dayNumber {
+    font-size: 16px;
+    border-right: 2px solid #B0B0B0 !important;
+}
+
 .main-view-graph-table td.main-view-graph-table-rowOrHead > div,
 .main-view-graph-table td.main-view-graph-table-rowOrHead > section {
     transform-origin: center;
@@ -97,4 +102,8 @@
 
 .main-view-graph-table > .main-view-graph-footer > .main-view-graph-footer-graph {
     float: right;
+}
+
+.graph-table .ant-table-body {
+    overflow-x: hidden;
 }
