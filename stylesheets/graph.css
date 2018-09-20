@@ -17,9 +17,13 @@
     font-weight: 900;
 }
 
+.main-view-graph-table .main-view-graph-table-rowOrHead-sm-lge {
+    font-size: 18px;
+}
+
 .main-view-graph-table .main-view-graph-table-rowOrHead-dayNumber {
     font-size: 16px;
-    border-right: 2px solid #B0B0B0 !important;
+    border-right: 2px solid #000 !important;
 }
 
 .main-view-graph-table td.main-view-graph-table-rowOrHead > div,
@@ -35,11 +39,11 @@
 
 .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-borderLeft,
 .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHead-borderRight {
-    border-right: 1px solid #B0B0B0 !important;
+    border-right: 2px solid #000 !important;
 }
 
-.ant-table-tbody .main-view-graph-table-rowOrHead-prizeNumber {
-    border-right: 1px solid #e8e8e8 !important;
+.ant-table-thead .main-view-graph-table-rowOrHead-prizeNumber {
+    border-right: 2px solid #000 !important;
 }
 
 .main-view-graph-table-rowOrHead.main-view-graph-table-rowOrHeadLeft {
