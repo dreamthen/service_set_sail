@@ -481,14 +481,14 @@ export function graphTable() {
         })
     }, {
         title: "大小",
-        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-sm-lge",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-sm-lge main-view-graph-table-rowOrHead-borderRight",
         children: select_prize_number_sm_lge.map((smLgeItem, smLgeIndex) => {
             return {
                 title: sizeConfig[smLgeItem],
                 key: `sm_lge_${smLgeIndex}`,
                 dataIndex: "sm_lge",
                 width: "3%",
-                className: "main-view-graph-table-rowOrHead",
+                className: smLgeIndex === select_prize_number_sm_lge.length - 1 ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === smLgeItem) {
                         return <div style={Object.assign({
@@ -519,14 +519,14 @@ export function graphTable() {
         })
     }, {
         title: "单双",
-        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-sm-lge",
+        className: "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-sm-lge main-view-graph-table-rowOrHead-borderRight",
         children: select_prize_number_odd_even.map((oddEvenItem, oddEvenIndex) => {
             return {
                 title: sizeConfig[oddEvenItem],
                 key: `odd_even_${oddEvenIndex}`,
                 dataIndex: "odd_even",
                 width: "3%",
-                className: "main-view-graph-table-rowOrHead",
+                className: oddEvenIndex === select_prize_number_odd_even.length - 1 ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-borderRight" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
                     if (text === oddEvenItem) {
                         return <div
