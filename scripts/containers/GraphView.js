@@ -159,7 +159,6 @@ class GraphView extends React.Component {
             tableHeight
         } = this.state;
         const columns = graphTable.bind(this)();
-        console.log(window.innerWidth, window.innerHeight);
         return (
             <section ref={(ref) => {
                 this.table = ref

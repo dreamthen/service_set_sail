@@ -401,7 +401,7 @@ export function graphTable() {
                 width: "2.7%",
                 className: sumItem > 10 ? (sumIndex === select_prize_number_sum.length - 1) ? "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd main-view-graph-table-rowOrHead-borderRight" : "main-view-graph-table-rowOrHead main-view-graph-table-rowOrHead-overAdd" : "main-view-graph-table-rowOrHead",
                 render(text, record) {
-                    if (text === sumItem) {
+                    if (text === String(sumItem)) {
                         switch (record["type"]) {
                             case "black":
                                 return <div style={Object.assign({
@@ -567,7 +567,7 @@ export function graphTable() {
                 width: "2.5%",
                 className: "main-view-graph-table-rowOrHead",
                 render(text, record) {
-                    if (text === spanItem) {
+                    if (text === String(spanItem)) {
                         switch (record["type"]) {
                             case "black":
                                 return <div style={Object.assign({
